@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
 {
@@ -62,5 +63,31 @@ class BrandController extends Controller
         }
 
         return view('admin/edit-foto-brand', compact('brand', 'title'));
+    }
+
+    public function updateImageBrand(Request $request, $id)
+    {
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $brand = Brand::find($id);
+
+        if (!$brand) {
+            return abort(404);
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image->storeAs('public/brands', $image->hashName());
+            Storage::delete('public/brands/' . basename($brand->image));
+
+            $brand->update([
+                'image' => $image->hashName(),
+            ]);
+
+        }
+
+        return redirect('admin/brands');
     }
 }

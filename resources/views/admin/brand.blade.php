@@ -57,7 +57,7 @@
                             <h3 class="card-title">Gambar Profil Studio</h3>
                         </div>
                         <div class="card-body">
-                            <img src="" alt="">
+                            <img class="img-fluid pad" src="{{ $brand->image }}" alt="studio-image">
                         </div>
                         <div class="card-footer">
                             <a href="{{ url('admin/brands') . '/' . $brand->id . '/edit-image' }}"
@@ -72,13 +72,7 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
-
-
-
-
-    </body>
-
-    </html>
+    <!-- /.content -->
 @endsection
 @section('script-app')
     <!-- bs-custom-file-input -->

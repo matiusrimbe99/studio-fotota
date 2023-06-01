@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
                     <h1 data-aos="fade-up">{{ $brand->description }}</h1>
-                    <h2 data-aos="fade-up" data-aos-delay="400">Alamat Kami di {{ $brand->address }}, Indonesia</h2>
+                    <h2 data-aos="fade-up" data-aos-delay="400">Alamat Kami di {{ $brand->address }}</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
                             <a href="#about"
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('customer/img/hero-img.png') }}" class="img-fluid" alt="">
+                    <img src="{{ $brand->image }}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
@@ -38,8 +38,8 @@
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
                             <h3>{{ $brand->brand_name }}</h3>
-                            <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat
-                                corrupti reprehenderit.</h2>
+                            <h2>Kami adalah tim fotografi berpengalaman yang berkomitmen untuk mengabadikan momen-momen
+                                berharga dalam hidup Anda.</h2>
                             <p>
                                 {{ $brand->about }}
                             </p>

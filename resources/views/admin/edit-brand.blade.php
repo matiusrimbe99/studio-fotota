@@ -60,7 +60,7 @@
                             <h3 class="card-title">Gambar Profil Studio</h3>
                         </div>
                         <div class="card-body">
-
+                            <img class="img-fluid pad" src="{{ $brand->image }}" alt="studio-image">
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -71,13 +71,7 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
-
-
-
-
-    </body>
-
-    </html>
+    <!-- /.content -->
 @endsection
 @section('script-app')
     <!-- bs-custom-file-input -->
