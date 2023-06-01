@@ -16,9 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        // \App\Models\Role::create([
+        //     'role_name' => 'Customer',
         // ]);
+
+        // \App\Models\User::create([
+        //     'username' => 'customer',
+        //     'password' => Hash::make('customer'),
+        //     'email' => 'customer@studio.site',
+        //     'role_id' => 2,
+        // ]);
+
     }
 }
