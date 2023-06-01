@@ -1,6 +1,6 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
      <!-- Brand Logo -->
-     <a href="{{ asset('admin/index3.html') }}" class="brand-link">
+     <a href="{{ url('admin/dashboard') }}" class="brand-link">
          <img src="{{ asset('admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
          <span class="brand-text font-weight-light">Admin Studio</span>
@@ -49,6 +49,12 @@
                          </p>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a href="{{ url('admin/customers') }}" class="nav-link">
+                         <i class="fas fa-users nav-icon"></i>
+                         <p>Pelanggan</p>
+                     </a>
+                 </li>
 
                  <li class="nav-header">TRANSAKSI</li>
                  <li class="nav-item">
@@ -71,15 +77,15 @@
                  </li>
                  <li class="nav-header">PENGATURAN</li>
                  <li class="nav-item">
-                     <a href="#" class="nav-link">
-                         <i class="fas fa-circle nav-icon"></i>
-                         <p>Pelanggan</p>
+                     <a href="{{ url('admin/users') }}" class="nav-link">
+                         <i class="fas fa-user nav-icon"></i>
+                         <p>Pengguna</p>
                      </a>
                  </li>
 
                  <li class="nav-item">
                      <a href="{{ url('admin/brands') }}" class="nav-link">
-                         <i class="fas fa-circle nav-icon"></i>
+                         <i class="fas fa-copy nav-icon"></i>
                          <p>Landing Page</p>
                      </a>
                  </li>
