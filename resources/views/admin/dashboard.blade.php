@@ -1,7 +1,5 @@
 @extends('admin_templates.app')
-@section('title-app')
-    Dashboard
-@endsection
+@section('title-app', $titleApp)
 @section('css-app')
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -47,14 +45,14 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>44</h3>
+                            <h3>{{ $countUsers }}</h3>
 
                             <p>Pelanggan</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Lihat Selengkapnya <i
+                        <a href="{{ url('admin/customers') }}" class="small-box-footer">Lihat Selengkapnya <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

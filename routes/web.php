@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -35,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('admin/dashboard', [DashboardController::class, 'index']);
+
     Route::get('admin/packets', [PacketController::class, 'index']);
     Route::post('admin/packets', [PacketController::class, 'store']);
     Route::get('admin/packets/create', [PacketController::class, 'create']);
@@ -63,6 +65,10 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('admin/brands/{brand}/edit-image', [BrandController::class, 'formEditImageBrand']);
     Route::patch('admin/brands/{brand}', [BrandController::class, 'update']);
     Route::patch('admin/brands/{brand}/update-image', [BrandController::class, 'updateImageBrand']);
+
+    Route::get('admin/contacts', [ContactController::class, 'index']);
+    Route::patch('admin/contacts', [ContactController::class, 'update']);
+    Route::get('admin/contacts/edit', [ContactController::class, 'edit']);
 
     Route::get('admin/customers', [CustomerController::class, 'index']);
     Route::get('admin/customers/{customer}', [CustomerController::class, 'show']);

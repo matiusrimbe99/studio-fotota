@@ -62,53 +62,8 @@
 
         </section><!-- End About Section -->
 
-        <!-- ======= Values Section ======= -->
-        <section id="values" class="values">
-
-            <div class="container" data-aos="fade-up">
-
-                <header class="section-header">
-                    <h2>Our Values</h2>
-                    <p>Odit est perspiciatis laborum et dicta</p>
-                </header>
-
-                <div class="row">
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="box">
-                            <img src="{{ asset('customer/img/values-1.png') }}" class="img-fluid" alt="">
-                            <h3>Ad cupiditate sed est odio</h3>
-                            <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
-                        <div class="box">
-                            <img src="{{ asset('customer/img/values-2.png') }}" class="img-fluid" alt="">
-                            <h3>Voluptatem voluptatum alias</h3>
-                            <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
-                        <div class="box">
-                            <img src="{{ asset('customer/img/values-3.png') }}" class="img-fluid" alt="">
-                            <h3>Fugit cupiditate alias nobis.</h3>
-                            <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section><!-- End Values Section -->
-
         <!-- ======= Counts Section ======= -->
-        <section id="counts" class="counts">
+        {{-- <section id="counts" class="counts">
             <div class="container" data-aos="fade-up">
 
                 <div class="row gy-4">
@@ -160,10 +115,11 @@
                 </div>
 
             </div>
-        </section><!-- End Counts Section -->
+        </section> --}}
+        <!-- End Counts Section -->
 
         <!-- ======= Features Section ======= -->
-        <section id="features" class="features">
+        {{-- <section id="features" class="features">
 
             <div class="container" data-aos="fade-up">
 
@@ -389,10 +345,11 @@
 
             </div>
 
-        </section><!-- End Features Section -->
+        </section> --}}
+        <!-- End Features Section -->
 
         <!-- ======= Services Section ======= -->
-        <section id="services" class="services">
+        {{-- <section id="services" class="services">
 
             <div class="container" data-aos="fade-up">
 
@@ -473,7 +430,8 @@
 
             </div>
 
-        </section><!-- End Services Section -->
+        </section> --}}
+        <!-- End Services Section -->
 
         <!-- ======= Pricing Section ======= -->
         <section id="pricing" class="pricing">
@@ -507,7 +465,7 @@
         </section><!-- End Pricing Section -->
 
         <!-- ======= F.A.Q Section ======= -->
-        <section id="faq" class="faq">
+        {{-- <section id="faq" class="faq">
 
             <div class="container" data-aos="fade-up">
 
@@ -637,7 +595,8 @@
 
             </div>
 
-        </section><!-- End F.A.Q Section -->
+        </section> --}}
+        <!-- End F.A.Q Section -->
 
         <!-- ======= Portfolio Section ======= -->
         <section id="portfolio" class="portfolio">
@@ -690,7 +649,7 @@
         </section><!-- End Portfolio Section -->
 
         <!-- ======= Testimonials Section ======= -->
-        <section id="testimonials" class="testimonials">
+        {{-- <section id="testimonials" class="testimonials">
 
             <div class="container" data-aos="fade-up">
 
@@ -813,10 +772,11 @@
 
             </div>
 
-        </section><!-- End Testimonials Section -->
+        </section> --}}
+        <!-- End Testimonials Section -->
 
         <!-- ======= Team Section ======= -->
-        <section id="team" class="team">
+        {{-- <section id="team" class="team">
 
             <div class="container" data-aos="fade-up">
 
@@ -911,10 +871,11 @@
 
             </div>
 
-        </section><!-- End Team Section -->
+        </section> --}}
+        <!-- End Team Section -->
 
         <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients">
+        {{-- <section id="clients" class="clients">
 
             <div class="container" data-aos="fade-up">
 
@@ -946,7 +907,8 @@
                 </div>
             </div>
 
-        </section><!-- End Clients Section -->
+        </section> --}}
+        <!-- End Clients Section -->
 
         <!-- ======= Recent Blog Posts Section ======= -->
         <section id="recent-blog-posts" class="recent-blog-posts">
@@ -979,7 +941,54 @@
 
             </div>
 
-        </section><!-- End Recent Blog Posts Section -->
+        </section>
+        <!-- End Recent Blog Posts Section -->
+
+        <!-- ======= Values Section ======= -->
+        <section id="values" class="values">
+
+            <div class="container" data-aos="fade-up">
+
+                <header class="section-header">
+                    <h2>Cara Pesan</h2>
+                    <p>Pahami Cara Pesan Jasa</p>
+                </header>
+
+                <div class="row">
+
+                    {{-- <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="box">
+                            <img src="{{ asset('customer/img/values-1.png') }}" class="img-fluid" alt="">
+                            <h3>Ad cupiditate sed est odio</h3>
+                            <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.
+                            </p>
+                        </div>
+                    </div> --}}
+
+                    <div class="col-lg-12 mt-12 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="box">
+                            {{-- <img src="{{ asset('customer/img/values-2.png') }}" class="img-fluid" alt=""> --}}
+                            <h3>Simak dan pahami cara pesan jasa fotografi</h3>
+                            <p>{{ $contact->method_order }}
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
+                        <div class="box">
+                            <img src="{{ asset('customer/img/values-3.png') }}" class="img-fluid" alt="">
+                            <h3>Fugit cupiditate alias nobis.</h3>
+                            <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.
+                            </p>
+                        </div>
+                    </div> --}}
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- End Values Section -->
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
@@ -988,7 +997,7 @@
 
                 <header class="section-header">
                     <h2>Contact</h2>
-                    <p>Contact Us</p>
+                    <p>Hubungi Kami</p>
                 </header>
 
                 <div class="row gy-4">
@@ -999,29 +1008,29 @@
                             <div class="col-md-6">
                                 <div class="info-box">
                                     <i class="bi bi-geo-alt"></i>
-                                    <h3>Address</h3>
-                                    <p>A108 Adam Street,<br>New York, NY 535022</p>
+                                    <h3>Alamat</h3>
+                                    <p>{{ $brand->address }}</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info-box">
-                                    <i class="bi bi-telephone"></i>
-                                    <h3>Call Us</h3>
-                                    <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                                    <i class="bi bi-whatsapp"></i>
+                                    <h3>Whatsapp</h3>
+                                    <p>{{ $contact->name_on_account }}<br>+{{ $contact->whatsapp }}</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info-box">
-                                    <i class="bi bi-envelope"></i>
-                                    <h3>Email Us</h3>
-                                    <p>info@example.com<br>contact@example.com</p>
+                                    <i class="bi bi-instagram"></i>
+                                    <h3>Instagram</h3>
+                                    <p>{{ $contact->instagram }}</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="info-box">
-                                    <i class="bi bi-clock"></i>
-                                    <h3>Open Hours</h3>
-                                    <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                                    <i class="bi bi-facebook"></i>
+                                    <h3>Facebook</h3>
+                                    <p>{{ $contact->facebook }}</p>
                                 </div>
                             </div>
                         </div>
@@ -1033,22 +1042,22 @@
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Your Name"
+                                    <input type="text" name="name" class="form-control" placeholder="Nama Anda"
                                         required>
                                 </div>
 
                                 <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                    <input type="email" class="form-control" name="email" placeholder="Email Anda"
                                         required>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                    <input type="text" class="form-control" name="subject" placeholder="Judul"
                                         required>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Pesan" required></textarea>
                                 </div>
 
                                 <div class="col-md-12 text-center">
@@ -1056,7 +1065,7 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                                    <button type="submit">Send Message</button>
+                                    <button type="submit">Kirim Pesan</button>
                                 </div>
 
                             </div>

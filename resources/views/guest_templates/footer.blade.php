@@ -1,6 +1,6 @@
 <footer id="footer" class="footer">
 
-    <div class="footer-newsletter">
+    {{-- <div class="footer-newsletter">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 text-center">
@@ -14,9 +14,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="footer-top">
+    {{-- <div class="footer-top">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-info">
@@ -70,11 +70,11 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="container">
         <div class="copyright">
-            &copy; Copyright <strong><span>FlexStart</span></strong>. All Rights Reserved
+            &copy; Copyright <strong><span>StudioFoto'ta</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->
@@ -82,6 +82,7 @@
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            <br>Develop by <a href="/">Firmansyah Musmar</a>
         </div>
     </div>
 </footer>

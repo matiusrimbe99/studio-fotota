@@ -55,6 +55,12 @@
                          <p>Pelanggan</p>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a href="{{ url('admin/contacts') }}" class="nav-link">
+                         <i class="fas fa-phone nav-icon"></i>
+                         <p>Kontak & Rekening</p>
+                     </a>
+                 </li>
 
                  <li class="nav-header">TRANSAKSI</li>
                  <li class="nav-item">

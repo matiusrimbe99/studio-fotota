@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="/" class="logo d-flex align-items-center">
             <img src="{{ asset('customer/img/logo.png') }}" alt="">
             <span>{{ $brand->brand_name }}</span>
         </a>
@@ -13,7 +13,7 @@
                 <li><a class="nav-link scrollto" href="#pricing">Paket Foto</a></li>
                 <li><a class="nav-link scrollto" href="#portfolio">Galeri</a></li>
                 <li><a class="nav-link scrollto" href="#recent-blog-posts">Paket Studio</a></li>
-                <li><a href="blog.html">Cara Pesan</a></li>
+                <li><a class="nav-link scrollto" href="#values">Cara Pesan</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 @if (Auth::check() && Auth::user()->role_id === 2)
                     <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
