@@ -52,6 +52,11 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('admin/studios/{studio}/edit', [StudioController::class, 'edit']);
 
     Route::get('admin/galleries', [GalleryController::class, 'index']);
+    Route::get('admin/galleries/create', [GalleryController::class, 'create']);
+    Route::get('admin/galleries/delete', [GalleryController::class, 'delete']);
+    Route::post('admin/galleries', [GalleryController::class, 'store']);
+    Route::delete('admin/galleries/{gallery}', [GalleryController::class, 'destroy']);
+    Route::delete('admin/galleries', [GalleryController::class, 'destroyAll']);
 
     Route::get('admin/brands', [BrandController::class, 'index']);
     Route::get('admin/brands/{brand}/edit', [BrandController::class, 'formEditBrand']);
