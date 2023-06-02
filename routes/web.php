@@ -42,7 +42,15 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::patch('admin/packets/{packet}', [PacketController::class, 'update']);
     Route::delete('admin/packets/{packet}', [PacketController::class, 'destroy']);
     Route::get('admin/packets/{packet}/edit', [PacketController::class, 'edit']);
+
     Route::get('admin/studios', [StudioController::class, 'index']);
+    Route::post('admin/studios', [StudioController::class, 'store']);
+    Route::get('admin/studios/create', [StudioController::class, 'create']);
+    Route::get('admin/studios/{studio}', [StudioController::class, 'show']);
+    Route::patch('admin/studios/{studio}', [StudioController::class, 'update']);
+    Route::delete('admin/studios/{studio}', [StudioController::class, 'destroy']);
+    Route::get('admin/studios/{studio}/edit', [StudioController::class, 'edit']);
+
     Route::get('admin/galleries', [GalleryController::class, 'index']);
 
     Route::get('admin/brands', [BrandController::class, 'index']);

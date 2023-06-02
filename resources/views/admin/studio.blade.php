@@ -1,7 +1,5 @@
 @extends('admin_templates.app')
-@section('title-app')
-    Paket Studio
-@endsection
+@section('title-app', $titleApp)
 @section('css-app')
 @endsection
 @section('main-content')
@@ -16,44 +14,34 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <button class="btn btn-success mb-3 float-right">Tambah
-                                Studio
-                            </button>
-                            <table id="example1" class="table table-bordered table-striped">
+                            <a href="{{ url('admin/studios/create') }}" class="btn btn-success mb-3 float-right">Tambah
+                                Paket
+                                Studio</a>
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Nama Studio</th>
+                                        <th style="width: 10px">#</th>
+                                        <th>Nama Paket</th>
                                         <th>Keterangan</th>
                                         <th>Harga</th>
-                                        <th>Aksi</th>
+                                        <th style="width: 50px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Studio VVIP
-                                        </td>
-                                        <td>Paket dengan harga murah</td>
-                                        <td>Rp. 200.000,00</td>
-                                        <td>Detail</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Studio VIP
-                                        </td>
-                                        <td>Paket dengan harga murah</td>
-                                        <td>Rp. 200.000,00</td>
-                                        <td>Detail</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Studio Standar
-                                        </td>
-                                        <td>Paket dengan harga murah</td>
-                                        <td>Rp. 200.000,00</td>
-                                        <td>Detail</td>
-                                    </tr>
+                                    <?php $nomor = 1; ?>
+                                    @foreach ($studios as $studio)
+                                        <tr>
+                                            <td>{{ $nomor++ }}</td>
+                                            <td>{{ $studio->studio_name }}</td>
+                                            <td>{{ $studio->description }}</td>
+                                            <td>{{ $studio->price }}</td>
+                                            <td class="text-center"><a
+                                                    href="{{ url('admin/studios') . '/' . $studio->id }}">
+                                                    <i class="nav-icon fas text-success fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

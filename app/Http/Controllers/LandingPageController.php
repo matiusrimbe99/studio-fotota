@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Packet;
+use App\Models\Studio;
 
 class LandingPageController extends Controller
 {
@@ -11,6 +12,7 @@ class LandingPageController extends Controller
     {
         $brand = Brand::where('id', 1)->get()->first();
         $packets = Packet::all();
-        return view('landing-page', compact('brand', 'packets'));
+        $studios = Studio::all();
+        return view('landing-page', compact('brand', 'packets', 'studios'));
     }
 }

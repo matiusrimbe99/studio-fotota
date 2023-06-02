@@ -12,7 +12,7 @@
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
                 <li><a class="nav-link scrollto" href="#pricing">Paket Foto</a></li>
                 <li><a class="nav-link scrollto" href="#portfolio">Galeri</a></li>
-                <li><a class="nav-link scrollto" href="#team">Paket Studio</a></li>
+                <li><a class="nav-link scrollto" href="#recent-blog-posts">Paket Studio</a></li>
                 <li><a href="blog.html">Cara Pesan</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 @if (Auth::check() && Auth::user()->role_id === 2)
