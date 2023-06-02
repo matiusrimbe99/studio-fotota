@@ -109,14 +109,17 @@ class PacketController extends Controller
 
     public function destroy($id)
     {
-        $packet = Packet::where('id', $id)->get()->first();
+        $packet = Packet::find($id);
 
         if (!$packet) {
             return abort(404);
         }
 
+        Storage::delete('public/packets/' . basename($packet->image));
+
         $packet->delete();
 
         return redirect('admin/packets');
+
     }
 }
