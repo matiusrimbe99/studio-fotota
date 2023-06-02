@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 @endsection
 @section('main-content')
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
@@ -80,5 +79,4 @@
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
 @endsection

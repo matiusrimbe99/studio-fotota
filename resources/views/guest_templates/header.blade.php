@@ -10,7 +10,7 @@
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Paket Foto</a></li>
+                <li><a class="nav-link scrollto" href="#pricing">Paket Foto</a></li>
                 <li><a class="nav-link scrollto" href="#portfolio">Galeri</a></li>
                 <li><a class="nav-link scrollto" href="#team">Paket Studio</a></li>
                 <li><a href="blog.html">Cara Pesan</a></li>

@@ -3,15 +3,120 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Packet;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PacketController extends Controller
 {
     public function index()
     {
-        // if (!Auth::check()) {
-        //     return redirect('admin/login')->with('error_message', 'Anda harus login terlebih dahulu!');
-        // }
+        $titleApp = 'Paket Foto';
+        $packets = Packet::all();
+        return view('admin/packet', compact('packets', 'titleApp'));
+    }
 
-        return view('admin/packet');
+    public function create()
+    {
+        $titleApp = 'Paket Foto';
+        return view('admin/create-packet', compact('titleApp'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'packet_name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+        ]);
+
+        $image = $request->file('image');
+        $image->storeAs('public/packets', $image->hashName());
+
+        Packet::create([
+            'image' => $image->hashName(),
+            'packet_name' => $request->packet_name,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+
+        return redirect('admin/packets');
+
+    }
+
+    public function show($id)
+    {
+        $titleApp = 'Paket Foto';
+        $packet = Packet::where('id', $id)->get()->first();
+
+        if (!$packet) {
+            return abort(404);
+        }
+        return view('admin/detail-packet', compact('packet', 'titleApp'));
+    }
+
+    public function edit($id)
+    {
+        $titleApp = 'Paket Foto';
+        $packet = Packet::where('id', $id)->get()->first();
+
+        if (!$packet) {
+            return abort(404);
+        }
+
+        return view('admin/edit-packet', compact('packet', 'titleApp'));
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'packet_name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $packet = Packet::find($id);
+
+        if (!$packet) {
+            return abort(404);
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image->storeAs('public/packets', $image->hashName());
+            Storage::delete('public/packets/' . basename($packet->image));
+
+            $packet->update([
+                'image' => $image->hashName(),
+                'packet_name' => $request->packet_name,
+                'description' => $request->description,
+                'price' => $request->price,
+            ]);
+
+        } else {
+            $packet->update([
+                'packet_name' => $request->packet_name,
+                'description' => $request->description,
+                'price' => $request->price,
+            ]);
+        }
+
+        return redirect('admin/packets');
+    }
+
+    public function destroy($id)
+    {
+        $packet = Packet::where('id', $id)->get()->first();
+
+        if (!$packet) {
+            return abort(404);
+        }
+
+        $packet->delete();
+
+        return redirect('admin/packets');
     }
 }

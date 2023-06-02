@@ -16,44 +16,34 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <button class="btn btn-success mb-3 float-right">Tambah
+                            <a href="{{ url('admin/packets/create') }}" class="btn btn-success mb-3 float-right">Tambah
                                 Paket
-                                Foto</button>
-                            <table id="example1" class="table table-bordered table-striped">
+                                Foto</a>
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th style="width: 10px">#</th>
                                         <th>Nama Paket</th>
                                         <th>Keterangan</th>
                                         <th>Harga</th>
-                                        <th>Aksi</th>
+                                        <th style="width: 50px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Kelulusan Wisuda
-                                        </td>
-                                        <td>Paket dengan harga murah</td>
-                                        <td>Rp. 200.000,00</td>
-                                        <td>Detail</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Kelulusan Wisuda
-                                        </td>
-                                        <td>Paket dengan harga murah</td>
-                                        <td>Rp. 200.000,00</td>
-                                        <td>Detail</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Kelulusan Wisuda
-                                        </td>
-                                        <td>Paket dengan harga murah</td>
-                                        <td>Rp. 200.000,00</td>
-                                        <td>Detail</td>
-                                    </tr>
+                                    <?php $nomor = 1; ?>
+                                    @foreach ($packets as $packet)
+                                        <tr>
+                                            <td>{{ $nomor++ }}</td>
+                                            <td>{{ $packet->packet_name }}</td>
+                                            <td>{{ $packet->description }}</td>
+                                            <td>{{ $packet->price }}</td>
+                                            <td class="text-center"><a
+                                                    href="{{ url('admin/packets') . '/' . $packet->id }}">
+                                                    <i class="nav-icon fas text-success fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

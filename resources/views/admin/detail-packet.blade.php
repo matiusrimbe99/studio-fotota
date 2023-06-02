@@ -1,5 +1,5 @@
 @extends('admin_templates.app')
-@section('title-app', $title)
+@section('title-app', $titleApp)
 @section('css-app')
 @endsection
 @section('main-content')
@@ -12,36 +12,37 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Data Profil Studio</h3>
+                            <h3 class="card-title">Detail Paket Foto</h3>
                         </div>
                         <!-- /.card-header -->
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="">Nama Brand</label>
-                                <input type="text" class="form-control" value="{{ $brand->brand_name }}" readonly>
+                                <label for="">Nama Paket</label>
+                                <input class="form-control" value="{{ $packet->packet_name }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Alamat Brand</label>
-                                <input type="text" class="form-control" value="{{ $brand->address }}" readonly>
+                                <label for="">Deskripsi Paket</label>
+                                <input class="form-control" value="{{ $packet->description }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label>Deskripsi</label>
-                                <textarea class="form-control" rows="3" readonly>{{ $brand->description }}</textarea>
+                                <label for="">Harga Paket</label>
+                                <input class="form-control" value="{{ $packet->price }}" readonly>
                             </div>
-
-                            <div class="form-group">
-                                <label>Tentang Kami</label>
-                                <textarea class="form-control" rows="8" readonly>{{ $brand->about }}</textarea>
-                            </div>
-
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <a href="{{ url('admin/brands') . '/' . $brand->id . '/edit' }}" class="btn btn-primary">Edit
-                                Data
-                                Profil</a>
+                            <a href="{{ url('admin/packets') . '/' . $packet->id . '/edit' }}"
+                                class="btn btn-primary float-left">Edit
+                                Paket</a>
+
+                            <form action="{{ url('admin/packets') . '/' . $packet->id }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger float-right">Hapus
+                                    Paket</button>
+                            </form>
                         </div>
 
                     </div>
@@ -53,14 +54,10 @@
                     <!-- Form Element sizes -->
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Gambar Profil Studio</h3>
+                            <h3 class="card-title">Gambar Paket Foto</h3>
                         </div>
                         <div class="card-body">
-                            <img class="img-fluid pad" src="{{ $brand->image }}" alt="studio-image">
-                        </div>
-                        <div class="card-footer">
-                            <a href="{{ url('admin/brands') . '/' . $brand->id . '/edit-image' }}"
-                                class="btn btn-primary">Ganti Gambar Profil</a>
+                            <img class="img-fluid pad" src="{{ $packet->image }}" alt="studio-image">
                         </div>
                         <!-- /.card-body -->
                     </div>
