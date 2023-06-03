@@ -32,7 +32,7 @@ class PacketController extends Controller
         ]);
 
         $image = $request->file('image');
-        $image->storeAs('public/packets', $image->hashName());
+        $image->storeAs('packets', $image->hashName());
 
         Packet::create([
             'image' => $image->hashName(),
@@ -86,8 +86,8 @@ class PacketController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/packets', $image->hashName());
-            Storage::delete('public/packets/' . basename($packet->image));
+            $image->storeAs('packets', $image->hashName());
+            Storage::delete('packets/' . basename($packet->image));
 
             $packet->update([
                 'image' => $image->hashName(),
@@ -115,7 +115,7 @@ class PacketController extends Controller
             return abort(404);
         }
 
-        Storage::delete('public/packets/' . basename($packet->image));
+        Storage::delete('packets/' . basename($packet->image));
 
         $packet->delete();
 

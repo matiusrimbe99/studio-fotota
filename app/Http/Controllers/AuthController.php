@@ -55,10 +55,10 @@ class AuthController extends Controller
 
     public function login()
     {
-        if (Auth::check() && Auth::user()->role_id === 1) {
+        if (Auth::check() && Auth::user()->role_id == 1) {
             return redirect('admin/dashboard')->with('error_message', 'Anda sudah login!');
         }
-        if (Auth::check() && Auth::user()->role_id === 2) {
+        if (Auth::check() && Auth::user()->role_id == 2) {
             return redirect('/')->with('error_message', 'Anda sudah login!');
         }
 
@@ -80,7 +80,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            if ($user->role_id === 1) {
+            if ($user->role_id == 1) {
                 return redirect('admin/dashboard');
             }
             return redirect('/');

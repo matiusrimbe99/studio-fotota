@@ -30,7 +30,7 @@ class GalleryController extends Controller
         ]);
 
         $image = $request->file('image');
-        $image->storeAs('public/galleries', $image->hashName());
+        $image->storeAs('galleries', $image->hashName());
 
         Gallery::create([
             'image' => $image->hashName(),
@@ -56,7 +56,7 @@ class GalleryController extends Controller
             return abort(404);
         }
 
-        Storage::delete('public/galleries/' . basename($gallery->image));
+        Storage::delete('galleries/' . basename($gallery->image));
 
         $gallery->delete();
 
@@ -73,7 +73,7 @@ class GalleryController extends Controller
         }
 
         foreach ($galleries as $gallery) {
-            Storage::delete('public/galleries/' . basename($gallery->image));
+            Storage::delete('galleries/' . basename($gallery->image));
             $gallery->delete();
         }
 

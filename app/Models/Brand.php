@@ -21,7 +21,7 @@ class Brand extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get:fn($image) => asset('/storage/brands/' . $image),
+            get:fn($image) => asset('/image/brands/' . $image),
         );
     }
 }
