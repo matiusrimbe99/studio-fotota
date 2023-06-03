@@ -43,7 +43,7 @@ class Order extends Model
     protected function paymentProof(): Attribute
     {
         return Attribute::make(
-            get:fn($payment_proof) => asset('/storage/payment_proofs/' . $payment_proof),
+            get:fn($payment_proof) => asset('/image/payment_proofs/' . $payment_proof),
         );
     }
 }

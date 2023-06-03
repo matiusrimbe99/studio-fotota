@@ -27,7 +27,7 @@ class Customer extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get:fn($image) => asset('/storage/customers/' . $image),
+            get:fn($image) => asset('/image/customers/' . $image),
         );
     }
 }

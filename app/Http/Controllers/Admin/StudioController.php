@@ -32,7 +32,7 @@ class StudioController extends Controller
         ]);
 
         $image = $request->file('image');
-        $image->storeAs('public/studios', $image->hashName());
+        $image->storeAs('studios', $image->hashName());
 
         Studio::create([
             'image' => $image->hashName(),
@@ -86,8 +86,8 @@ class StudioController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/studios', $image->hashName());
-            Storage::delete('public/studios/' . basename($studio->image));
+            $image->storeAs('studios', $image->hashName());
+            Storage::delete('studios/' . basename($studio->image));
 
             $studio->update([
                 'image' => $image->hashName(),
@@ -115,7 +115,7 @@ class StudioController extends Controller
             return abort(404);
         }
 
-        Storage::delete('public/studios/' . basename($studio->image));
+        Storage::delete('studios/' . basename($studio->image));
 
         $studio->delete();
 

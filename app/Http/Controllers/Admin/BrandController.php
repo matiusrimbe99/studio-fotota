@@ -79,8 +79,8 @@ class BrandController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $image->storeAs('public/brands', $image->hashName());
-            Storage::delete('public/brands/' . basename($brand->image));
+            $image->storeAs('brands', $image->hashName());
+            Storage::delete('brands/' . basename($brand->image));
 
             $brand->update([
                 'image' => $image->hashName(),
