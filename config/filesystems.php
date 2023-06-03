@@ -36,9 +36,16 @@ return [
             'throw' => false,
         ],
 
+        // 'image_uploads' => [
+        //     'driver' => 'local',
+        //     'root' => public_path('image'),
+        //     'throw' => false,
+        // ],
+
         'image_uploads' => [
             'driver' => 'local',
-            'root' => public_path('image'),
+            'root' => __DIR__ . '/../../../public_html/studio.matiusrimbe.site/image',
+            'visibility' => 'public',
             'throw' => false,
         ],
 
