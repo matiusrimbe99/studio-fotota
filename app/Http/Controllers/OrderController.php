@@ -230,7 +230,7 @@ class OrderController extends Controller
     {
 
         $request->validate([
-            'payment_proof' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'payment_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
         $user = auth()->user();

@@ -25,9 +25,9 @@ class PacketController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'packet_name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
             'price' => 'required|numeric',
         ]);
 
@@ -73,9 +73,9 @@ class PacketController extends Controller
     {
         $request->validate([
             'packet_name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
         $packet = Packet::find($id);

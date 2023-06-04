@@ -30,7 +30,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'address' => 'required',
             'gender' => 'required',
-            'nomor_hp' => 'required',
+            'nomor_hp' => 'required|numeric',
         ]);
 
         $nomor_hp = $request['nomor_hp'];
@@ -90,7 +90,7 @@ class UserController extends Controller
             'name' => 'required',
             'address' => 'required',
             'gender' => 'required',
-            'nomor_hp' => 'required',
+            'nomor_hp' => 'required|numeric',
         ]);
 
         $nomor_hp = $request['nomor_hp'];

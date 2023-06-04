@@ -25,9 +25,9 @@ class StudioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'studio_name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
             'price' => 'required|numeric',
         ]);
 
@@ -73,9 +73,9 @@ class StudioController extends Controller
     {
         $request->validate([
             'studio_name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
             'price' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
         $studio = Studio::find($id);

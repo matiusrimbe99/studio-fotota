@@ -19,21 +19,23 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="">Nama Brand</label>
-                                <input type="text" class="form-control" value="{{ $brand->brand_name }}" readonly>
+                                <label for="brand_name">Nama Brand</label>
+                                <input type="text" id="brand_name" class="form-control" value="{{ $brand->brand_name }}"
+                                    readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Alamat Brand</label>
-                                <input type="text" class="form-control" value="{{ $brand->address }}" readonly>
+                                <label for="address">Alamat Brand</label>
+                                <input type="text" class="form-control" id="address" value="{{ $brand->address }}"
+                                    readonly>
                             </div>
                             <div class="form-group">
-                                <label>Deskripsi</label>
-                                <textarea class="form-control" rows="3" readonly>{{ $brand->description }}</textarea>
+                                <label for="description">Deskripsi</label>
+                                <textarea class="form-control" id="description" rows="3" readonly>{{ $brand->description }}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label>Tentang Kami</label>
-                                <textarea class="form-control" rows="8" readonly>{{ $brand->about }}</textarea>
+                                <label for="about">Tentang Kami</label>
+                                <textarea class="form-control" rows="8" id="about" readonly>{{ $brand->about }}</textarea>
                             </div>
 
                         </div>
@@ -59,12 +61,15 @@
                                 <div class="form-group">
                                     <label for="customFile">File Gambar</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="image">
+                                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                            id="customFile" name="image">
                                         <label class="custom-file-label" for="customFile">Pilih file gambar</label>
                                     </div>
+                                    @error('image')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                <div class="form-group">
-                                </div>
+
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Ubah Gambar Profil</button>
                                 </div>

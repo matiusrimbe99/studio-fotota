@@ -32,8 +32,8 @@ class BrandController extends Controller
     {
         $request->validate([
             'brand_name' => 'required|string',
-            'description' => 'required|string',
-            'about' => 'required|string',
+            'description' => 'required|string|max:255',
+            'about' => 'required|string|max:255',
             'address' => 'required|string',
         ]);
 
@@ -68,7 +68,7 @@ class BrandController extends Controller
     public function updateImageBrand(Request $request, $id)
     {
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
         ]);
 
         $brand = Brand::find($id);

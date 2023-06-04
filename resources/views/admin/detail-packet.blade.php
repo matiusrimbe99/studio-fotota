@@ -18,16 +18,16 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="">Nama Paket</label>
-                                <input class="form-control" value="{{ $packet->packet_name }}" readonly>
+                                <label for="packet_name">Nama Paket</label>
+                                <input id="packet_name" class="form-control" value="{{ $packet->packet_name }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Deskripsi Paket</label>
-                                <input class="form-control" value="{{ $packet->description }}" readonly>
+                                <label for="description">Deskripsi Paket</label>
+                                <input id="description" class="form-control" value="{{ $packet->description }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Harga Paket</label>
-                                <input class="form-control" value="{{ $packet->price }}" readonly>
+                                <label for="price">Harga Paket</label>
+                                <input id="price" class="form-control" value="{{ $packet->price }}" readonly>
                             </div>
                         </div>
                         <!-- /.card-body -->

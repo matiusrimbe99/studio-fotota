@@ -18,21 +18,23 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="">Nama Brand</label>
-                                <input type="text" class="form-control" value="{{ $brand->brand_name }}" readonly>
+                                <label for="brand_name">Nama Brand</label>
+                                <input type="text" class="form-control" id="brand_name" value="{{ $brand->brand_name }}"
+                                    readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Alamat Brand</label>
-                                <input type="text" class="form-control" value="{{ $brand->address }}" readonly>
+                                <label for="address">Alamat Brand</label>
+                                <input type="text" id="address" class="form-control" value="{{ $brand->address }}"
+                                    readonly>
                             </div>
                             <div class="form-group">
-                                <label>Deskripsi</label>
-                                <textarea class="form-control" rows="3" readonly>{{ $brand->description }}</textarea>
+                                <label for="description">Deskripsi</label>
+                                <textarea class="form-control" id="description" rows="3" readonly>{{ $brand->description }}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label>Tentang Kami</label>
-                                <textarea class="form-control" rows="8" readonly>{{ $brand->about }}</textarea>
+                                <label for="about">Tentang Kami</label>
+                                <textarea class="form-control" id="about" rows="8" readonly>{{ $brand->about }}</textarea>
                             </div>
 
                         </div>

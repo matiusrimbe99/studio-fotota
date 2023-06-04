@@ -19,26 +19,27 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="">Nama Pemesan</label>
-                                <input class="form-control" value="{{ $order->user->customer->name }}" readonly>
+                                <label for="name">Nama Pemesan</label>
+                                <input id="name" class="form-control" value="{{ $order->user->customer->name }}"
+                                    readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Tanggal Bayar</label>
-                                <input class="form-control" value="{{ $order->paid_at }}" readonly>
+                                <label for="date">Tanggal Bayar</label>
+                                <input id="date" class="form-control" value="{{ $order->paid_at }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Tanggal Selesai</label>
-                                <input class="form-control" value="{{ $order->completed_at }}" readonly>
+                                <label for="date_success">Tanggal Selesai</label>
+                                <input id="date_success" class="form-control" value="{{ $order->completed_at }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Tanggal Pemotretan</label>
-                                <input class="form-control" value="{{ $order->shooting_date }}" readonly>
+                                <label for="potret">Tanggal Pemotretan</label>
+                                <input id="potret" class="form-control" value="{{ $order->shooting_date }}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="">Total Harga</label>
-                                <input class="form-control" value="{{ $order->packet->price + $order->studio->price }}"
-                                    readonly>
+                                <label for="total">Total Harga</label>
+                                <input id="total" class="form-control"
+                                    value="{{ $order->packet->price + $order->studio->price }}" readonly>
                             </div>
 
                         </div>

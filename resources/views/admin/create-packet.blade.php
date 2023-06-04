@@ -22,25 +22,41 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="packet_name">Nama Paket</label>
-                                    <input type="text" id="packet_name" name="packet_name" class="form-control"
+                                    <input type="text" id="packet_name" name="packet_name"
+                                        class="form-control @error('packet_name') is-invalid @enderror"
                                         placeholder="Masukkan nama paket">
+                                    @error('packet_name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Keterangan</label>
-                                    <input type="text" id="description" name="description" class="form-control"
+                                    <input type="text" id="description" name="description"
+                                        class="form-control @error('description') is-invalid @enderror"
                                         placeholder="Masukkan deskripsi paket">
+                                    @error('description')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="price">Harga</label>
-                                    <input type="number" id="price" name="price" class="form-control"
+                                    <input type="number" id="price" name="price"
+                                        class="form-control @error('price') is-invalid @enderror"
                                         placeholder="Masukkan harga paket">
+                                    @error('price')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="customFile">File Gambar</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="image">
+                                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                            id="customFile" name="image">
                                         <label class="custom-file-label" for="customFile">Pilih file gambar</label>
                                     </div>
+                                    @error('image')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->

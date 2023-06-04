@@ -29,15 +29,18 @@
                 <form action="{{ url('auth/register') }}" method="POST">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="name" placeholder="Nama Anda">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                            placeholder="Nama Anda">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
+
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="Email">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                            placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -45,8 +48,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <select class="form-control" name="gender">
-                            <option disabled>Jenis Kelamin</option>
+                        <select class="form-control @error('gender') is-invalid @enderror" name="gender">
+                            <option value="">Jenis Kelamin</option>
                             <option value="1">Laki-Laki</option>
                             <option value="2">Perempuan</option>
                         </select>
@@ -58,7 +61,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="address" placeholder="Alamat">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
+                            placeholder="Alamat">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-map-marker"></span>
@@ -66,7 +70,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="nomor_hp" placeholder="Nomor HP">
+                        <input type="text" class="form-control @error('nomor_hp') is-invalid @enderror"
+                            name="nomor_hp" placeholder="Nomor HP">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-phone"></span>
@@ -74,7 +79,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" placeholder="Username">
+                        <input type="text" class="form-control @error('username') is-invalid @enderror"
+                            name="username" placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -82,7 +88,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password"
+                            class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -90,7 +97,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password_confirmation" class="form-control"
+                        <input type="password" name="password_confirmation"
+                            class="form-control @error('password') is-invalid @enderror"
                             placeholder="Konfirmasi password">
                         <div class="input-group-append">
                             <div class="input-group-text">

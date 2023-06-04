@@ -163,7 +163,11 @@
 
                             <div class="col-md-12">
                                 <label for="payment_proof" class="form-label">Upload Bukti Pembayaran</label>
-                                <input class="form-control" name="payment_proof" type="file" id="payment_proof">
+                                <input class="form-control @error('payment_proof') is-invalid @enderror"
+                                    name="payment_proof" type="file" id="payment_proof">
+                                @error('payment_proof')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-12 text-center">

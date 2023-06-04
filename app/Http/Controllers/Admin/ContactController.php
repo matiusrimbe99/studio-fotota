@@ -35,13 +35,13 @@ class ContactController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'whatsapp' => 'required|string',
+            'whatsapp' => 'required|numeric',
             'facebook' => 'required|string',
             'instagram' => 'required|string',
-            'account_number' => 'required|string',
+            'account_number' => 'required|numeric',
             'name_on_account' => 'required|string',
             'bank_name' => 'required|string',
-            'method_order' => 'required|string',
+            'method_order' => 'required|string|max:255',
         ]);
 
         $whatsapp = $request['whatsapp'];

@@ -23,14 +23,22 @@
                                 <div class="form-group">
                                     <label for="customFile">File Gambar</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="image">
+                                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                            id="customFile" name="image">
                                         <label class="custom-file-label" for="customFile">Pilih file gambar</label>
                                     </div>
+                                    @error('image')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Keterangan</label>
-                                    <input type="text" id="description" name="description" class="form-control"
+                                    <input type="text" id="description" name="description"
+                                        class="form-control @error('description') is-invalid @enderror"
                                         placeholder="Masukkan deskripsi gambar">
+                                    @error('description')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->

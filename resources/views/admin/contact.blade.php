@@ -14,39 +14,40 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Whatsapp</label>
-                                <input value="{{ $contact->whatsapp }}" class="form-control" readonly>
+                                <label for="whatsapp">Whatsapp</label>
+                                <input value="{{ $contact->whatsapp }}" class="form-control" id="whatsapp" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Facebook</label>
-                                <input value="{{ $contact->facebook }}" class="form-control" readonly>
+                                <label for="facebook">Facebook</label>
+                                <input value="{{ $contact->facebook }}" class="form-control" id="facebook" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Instagram</label>
-                                <input value="{{ $contact->instagram }}" class="form-control" readonly>
+                                <label for="instagram">Instagram</label>
+                                <input value="{{ $contact->instagram }}" class="form-control" id="instagram" readonly>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Nomor Rekening</label>
-                                <input value="{{ $contact->account_number }}" class="form-control" readonly>
+                                <label for="norek">Nomor Rekening</label>
+                                <input value="{{ $contact->account_number }}" class="form-control" id="norek" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Nama di Rekening</label>
-                                <input value="{{ $contact->name_on_account }}" class="form-control" readonly>
+                                <label for="name_on_account">Nama di Rekening</label>
+                                <input value="{{ $contact->name_on_account }}" class="form-control" id="name_on_account"
+                                    readonly>
                             </div>
                             <div class="form-group">
-                                <label for="nomor_hp">Nama Bank</label>
-                                <input value="{{ $contact->bank_name }}" class="form-control" readonly>
+                                <label for="bank_name">Nama Bank</label>
+                                <input value="{{ $contact->bank_name }}" class="form-control" id="bank_name" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Cara Pesan</label>
-                                <textarea class="form-control" rows="3" readonly>{{ $contact->method_order }}</textarea>
+                                <label id="method_order">Cara Pesan</label>
+                                <textarea class="form-control" rows="3" id="method_order" readonly>{{ $contact->method_order }}</textarea>
                             </div>
                         </div>
                     </div>

@@ -159,45 +159,59 @@
                         <div class="row gy-4">
 
                             <div class="col-md-6">
-                                <label for="">Nama</label>
-                                <input class="form-control" value="{{ $user->customer->name }}" readonly>
+                                <label for="name">Nama</label>
+                                <input id="name" class="form-control " value="{{ $user->customer->name }}"
+                                    readonly>
                                 <input type="hidden" name="id" class="form-control" value="{{ $user->id }}"
                                     readonly>
                             </div>
 
                             <div class="col-md-6 ">
-                                <label for="">Alamat</label>
-                                <input class="form-control" value="{{ $user->customer->address }}" readonly>
+                                <label for="address">Alamat</label>
+                                <input id="address" class="form-control" value="{{ $user->customer->address }}"
+                                    readonly>
                             </div>
 
                             <div class="col-md-12">
-                                <label for="">Paket Foto</label>
-                                <select name="packet_id" class="form-control">
-                                    <option class="form-control">--- Pilih Paket ---</option>
+                                <label for="packet_id">Paket Foto</label>
+                                <select id="packet_id" name="packet_id"
+                                    class="form-control @error('packet_id') is-invalid @enderror">
+                                    <option value="">--- Pilih Paket ---</option>
                                     @foreach ($packets as $packet)
-                                        <option class="form-control" value="{{ $packet->id }}">
+                                        <option value="{{ $packet->id }}">
                                             {{ $packet->packet_name }}
                                         </option>
                                     @endforeach
                                 </select>
+                                @error('packet_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
 
                             </div>
 
                             <div class="col-md-12">
-                                <label for="">Studio Foto</label>
-                                <select name="studio_id" class="form-control">
-                                    <option class="form-control">--- Pilih Studio ---</option>
+                                <label for="studio_id">Studio Foto</label>
+                                <select id="studio_id" name="studio_id"
+                                    class="form-control @error('studio_id') is-invalid @enderror">
+                                    <option value="">--- Pilih Studio ---</option>
                                     @foreach ($studios as $studio)
-                                        <option class="form-control" value="{{ $studio->id }}">
+                                        <option value="{{ $studio->id }}">
                                             {{ $studio->studio_name }}
                                         </option>
                                     @endforeach
                                 </select>
-
+                                @error('studio_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-12">
-                                <label for="">Tanggal Pemotretan</label>
-                                <input type="date" class="form-control" name="shooting_date">
+                                <label for="shooting_date">Tanggal Pemotretan</label>
+                                <input id="shooting_date" type="date"
+                                    class="form-control @error('shooting_date') is-invalid @enderror"
+                                    name="shooting_date">
+                                @error('shooting_date')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="col-md-12 text-center">

@@ -22,35 +22,41 @@
                             @method('PATCH')
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="">Nama Pemesan</label>
-                                    <input class="form-control" value="{{ $order->user->customer->name }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Tanggal Bayar</label>
-                                    <input class="form-control" value="{{ $order->paid_at }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Harga Paket Foto</label>
-                                    <input class="form-control" value="{{ $order->packet->price }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Harga Studio</label>
-                                    <input class="form-control" value="{{ $order->studio->price }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Total Harga</label>
-                                    <input class="form-control" value="{{ $order->packet->price + $order->studio->price }}"
+                                    <label for="name">Nama Pemesan</label>
+                                    <input id="name" class="form-control" value="{{ $order->user->customer->name }}"
                                         readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_paid">Tanggal Bayar</label>
+                                    <input id="date_paid" class="form-control" value="{{ $order->paid_at }}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price_packet">Harga Paket Foto</label>
+                                    <input id="price_packet" class="form-control" value="{{ $order->packet->price }}"
+                                        readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="price_studio">Harga Studio</label>
+                                    <input id="price_studio" class="form-control" value="{{ $order->studio->price }}"
+                                        readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="total">Total Harga</label>
+                                    <input id="total" class="form-control"
+                                        value="{{ $order->packet->price + $order->studio->price }}" readonly>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="status_order_id">Aksi</label>
-                                    <select name="status_order_id" id="status_order_id" class="form-control">
+                                    <select name="status_order_id" id="status_order_id"
+                                        class="form-control @error('status_order_id') is-invalid @enderror">
                                         <option value="">--- Pilih Aksi ---</option>
                                         <option value="6">Terima Pembayaran</option>
                                         <option value="5">Tolak Pembayaran</option>
-
                                     </select>
+                                    @error('status_order_id')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                             </div>

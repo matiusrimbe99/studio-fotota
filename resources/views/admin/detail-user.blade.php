@@ -14,31 +14,31 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Nama Pengguna</label>
-                                <input value="{{ $user->customer->name }}" class="form-control" readonly>
+                                <label for="name">Nama Pengguna</label>
+                                <input value="{{ $user->customer->name }}" class="form-control" id="name" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Username</label>
-                                <input value="{{ $user->username }}" class="form-control" readonly>
+                                <label for="username">Username</label>
+                                <input value="{{ $user->username }}" class="form-control" id="username" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Email</label>
-                                <input value="{{ $user->email }}" class="form-control" readonly>
+                                <label for="email">Email</label>
+                                <input value="{{ $user->email }}" id="email" class="form-control" readonly>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Alamat</label>
-                                <input value="{{ $user->customer->address }}" class="form-control" readonly>
+                                <label for="address">Alamat</label>
+                                <input value="{{ $user->customer->address }}" class="form-control" id="address" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="">Jenis Kelamin</label>
-                                <input value="{{ $user->customer->gender }}" class="form-control" readonly>
+                                <label for="gender">Jenis Kelamin</label>
+                                <input value="{{ $user->customer->gender }}" class="form-control" id="gender" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="nomor_hp">Nomor HP</label>
-                                <input value="{{ $user->customer->nomor_hp }}" class="form-control" readonly>
+                                <input value="{{ $user->customer->nomor_hp }}" class="form-control" id="nomor_hp" readonly>
                             </div>
                         </div>
                     </div>
