@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\StudioController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -80,7 +81,27 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('admin/users/{user}/edit', [UserController::class, 'edit']);
     Route::patch('admin/users/{user}', [UserController::class, 'update']);
     Route::delete('admin/users/{user}', [UserController::class, 'destroy']);
+
+    Route::get('admin/orders', [OrderController::class, 'index']);
+    Route::get('admin/orders/payments', [OrderController::class, 'listOrderPayments']);
+    Route::get('admin/orders/full-payments', [OrderController::class, 'listOrderFullPayments']);
+    Route::get('admin/orders/completed', [OrderController::class, 'listOrderCompleted']);
+    Route::get('admin/orders/all', [OrderController::class, 'listAllOrder']);
+    Route::get('admin/orders/{order}/all', [OrderController::class, 'showAllOrder']);
+    Route::get('admin/orders/{order}', [OrderController::class, 'show']);
+    Route::get('admin/orders/{order}/payment', [OrderController::class, 'showPayment']);
+    Route::get('admin/orders/{order}/full-payment', [OrderController::class, 'showFullPayment']);
+    Route::get('admin/orders/{order}/completed', [OrderController::class, 'showOrderCompleted']);
+    Route::patch('admin/orders/{order}/done', [OrderController::class, 'updateOrderDone']);
+    Route::patch('admin/orders/{order}/payment', [OrderController::class, 'updatePayment']);
+    Route::patch('admin/orders/{order}', [OrderController::class, 'updateAcceptOrReject']);
+
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {
+    Route::get('orders/create', [OrderController::class, 'create']);
+    Route::post('orders', [OrderController::class, 'store']);
+    Route::get('orders/customers', [OrderController::class, 'showOrderByCustomer']);
+    Route::get('orders/customers/{order}/payment', [OrderController::class, 'formCustomerPayment']);
+    Route::patch('orders/customers/{order}/payment', [OrderController::class, 'updateCustomerPayment']);
 });

@@ -18,9 +18,10 @@
                 @if (Auth::check() && Auth::user()->role_id == 2)
                     <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">My Order</a></li>
-                            <li><a href="#">Edit Profil</a></li>
-                            <li><a href="#">Ganti Password</a></li>
+                            <li><a href="{{ url('orders/create') }}">Order Jasa</a></li>
+                            <li><a href="{{ url('orders/customers') }}">List Order</a></li>
+                            <li><a href="/">Edit Profil</a></li>
+                            <li><a href="/">Ganti Password</a></li>
                         </ul>
                     </li>
                 @endif

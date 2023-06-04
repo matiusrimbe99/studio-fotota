@@ -27,7 +27,7 @@
                  <li class="nav-header">MASTER DATA</li>
                  <li class="nav-item">
                      <a href="/admin/packets" class="nav-link">
-                         <i class="nav-icon far fa-calendar-alt"></i>
+                         <i class="nav-icon fa fa-camera-retro"></i>
                          <p>
                              Paket Foto
                          </p>
@@ -63,22 +63,35 @@
                  </li>
 
                  <li class="nav-header">TRANSAKSI</li>
+
                  <li class="nav-item">
-                     <a href="{{ asset('admin/iframe.html') }}" class="nav-link">
-                         <i class="nav-icon fas fa-ellipsis-h"></i>
-                         <p>Pesanan</p>
+                     <a href="{{ url('admin/orders') }}" class="nav-link">
+                         <i class="nav-icon fa fa-cart-arrow-down"></i>
+                         <p>Pesanan Masuk</p>
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-                         <i class="nav-icon fas fa-file"></i>
+                     <a href="{{ url('admin/orders/payments') }}" class="nav-link">
+                         <i class="nav-icon fa fa-credit-card"></i>
                          <p>Pembayaran</p>
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-                         <i class="nav-icon fas fa-file"></i>
+                     <a href="{{ url('admin/orders/full-payments') }}" class="nav-link">
+                         <i class="nav-icon fa fa-check"></i>
+                         <p>Pesanan Lunas</p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="{{ url('admin/orders/completed') }}" class="nav-link">
+                         <i class="nav-icon fa fa-shopping-cart"></i>
                          <p>Pesanan Selesai</p>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="{{ url('admin/orders/all') }}" class="nav-link">
+                         <i class="nav-icon fa fa-cart-plus"></i>
+                         <p>Semua Pesanan</p>
                      </a>
                  </li>
                  <li class="nav-header">PENGATURAN</li>

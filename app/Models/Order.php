@@ -18,6 +18,8 @@ class Order extends Model
         'shooting_date',
         'status_order_id',
         'payment_proof',
+        'paid_at',
+        'completed_at',
     ];
 
     public function user()

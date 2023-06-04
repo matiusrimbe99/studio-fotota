@@ -1,0 +1,78 @@
+@extends('admin_templates/app')
+@section('title-app', $titleApp)
+@section('css-app')
+@endsection
+@section('main-content')
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Tabel Semua Pesanan</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Pemesan</th>
+                                        <th>Tanggal Pesan</th>
+                                        <th>Status Pesanan</th>
+                                        <th>Total Harga</th>
+                                        <th style="width: 50px">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $nomor = 1; ?>
+                                    @foreach ($orders as $order)
+                                        <tr>
+                                            <td>{{ $nomor++ }}</td>
+                                            <td>{{ $order->user->customer->name }}</td>
+                                            <td>{{ $order->created_at }}</td>
+                                            <td>
+
+                                                @if ($order->statusOrder->id == 1 || $order->statusOrder->id == 5)
+                                                    <span
+                                                        class="badge badge-danger">{{ $order->statusOrder->status_name }}</span>
+                                                @else
+                                                    <span
+                                                        class="badge badge-success">{{ $order->statusOrder->status_name }}</span>
+                                                @endif
+
+                                            </td>
+                                            <td>{{ $order->packet->price + $order->studio->price }}</td>
+                                            <td class="text-center"><a
+                                                    href="{{ url('admin/orders/' . $order->id . '/all') }}">
+                                                    <i class="nav-icon fas text-success fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+@endsection
+@section('script-app')
+@endsection
