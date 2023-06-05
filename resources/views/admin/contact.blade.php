@@ -52,7 +52,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label id="method_order">Cara Pesan</label>
-                                <textarea class="form-control" rows="3" id="method_order" readonly>{{ $contact->method_order }}</textarea>
+                                <textarea class="form-control" rows="8" id="method_order" readonly>{{ $contact->method_order }}</textarea>
                             </div>
                         </div>
                     </div>

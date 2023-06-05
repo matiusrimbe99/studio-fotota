@@ -1,6 +1,10 @@
 @extends('admin_templates.app')
 @section('title-app', $titleApp)
 @section('css-app')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 @section('main-content')
     <!-- Main content -->
@@ -14,35 +18,31 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <a href="{{ url('admin/studios/create') }}" class="btn btn-success mb-3 float-right">Tambah
-                                Paket
-                                Studio</a>
-                            <table class="table table-bordered table-striped">
+                            @if (session('success'))
+                                <div class="alert alert-success text-center" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            <div class="row">
+                                <div class="col-12">
+                                    <a href="{{ url('admin/studios/create') }}"
+                                        class="btn btn-success mb-3 float-right">Tambah
+                                        Paket
+                                        Studio</a>
+                                </div>
+                            </div>
+                            <table id="studio-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Nama Paket</th>
+                                        <th>#</th>
+                                        <th>Nama Studio</th>
                                         <th>Keterangan</th>
                                         <th>Harga</th>
-                                        <th style="width: 50px">Aksi</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php $nomor = 1; ?>
-                                    @foreach ($studios as $studio)
-                                        <tr>
-                                            <td>{{ $nomor++ }}</td>
-                                            <td>{{ $studio->studio_name }}</td>
-                                            <td>{{ $studio->description }}</td>
-                                            <td>{{ $studio->price }}</td>
-                                            <td class="text-center"><a
-                                                    href="{{ url('admin/studios') . '/' . $studio->id }}">
-                                                    <i class="nav-icon fas text-success fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
+                                <tbody></tbody>
+
                             </table>
                         </div>
                         <!-- /.card-body -->
@@ -57,4 +57,57 @@
     </section>
 @endsection
 @section('script-app')
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            $("#studio-table").DataTable({
+                "responsive": true,
+                // "lengthChange": false,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ url('admin/studios') }}",
+                "columns": [{
+                        "data": 'number',
+                        "name": 'number'
+                    },
+                    {
+                        "data": 'studio_name',
+                        "name": 'studio_name'
+                    },
+                    {
+                        "data": 'description',
+                        "name": 'description'
+                    },
+                    {
+                        "data": 'price',
+                        "name": 'price'
+                    },
+                    {
+                        "data": 'action',
+                        "name": 'action',
+                        "orderable": false,
+                        "searchable": false
+                    },
+                ],
+                "columnDefs": [{
+                    "targets": 3,
+                    "render": $.fn.dataTable.render.number(',', '.', 2, 'Rp. ')
+                }, ]
+            });
+        });
+    </script>
 @endsection

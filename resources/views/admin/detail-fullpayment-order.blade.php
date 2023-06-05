@@ -37,8 +37,7 @@
 
                                 <div class="form-group">
                                     <label for="total">Total Harga</label>
-                                    <input id="total" class="form-control"
-                                        value="{{ $order->packet->price + $order->studio->price }}" readonly>
+                                    <input id="total" class="form-control" value="@currency($order->packet->price + $order->studio->price)" readonly>
                                 </div>
 
                             </div>

@@ -34,7 +34,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
-                                <input id="gender" value="{{ $customer->gender }}" class="form-control" readonly>
+                                <input id="gender"
+                                    value="@if ($customer->gender == 1) Laki-Laki
+                                @else Perempuan @endif"
+                                    class="form-control" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="nomor_hp">Nomor HP</label>

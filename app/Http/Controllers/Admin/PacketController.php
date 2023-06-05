@@ -4,16 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Packet;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PacketController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $titleApp = 'Paket Foto';
-        $packets = Packet::all();
-        return view('admin/packet', compact('packets', 'titleApp'));
+
+        if ($request->ajax()) {
+            $packets = Packet::all();
+
+            return Datatables::of($packets)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . "packets/" . $row->id . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'action'])->make(true);
+        }
+
+        return view('admin/packet', compact('titleApp'));
+
     }
 
     public function create()
@@ -41,7 +56,7 @@ class PacketController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect('admin/packets');
+        return redirect('admin/packets')->with("success", "Paket foto berhasil ditambah!");
 
     }
 
@@ -104,7 +119,7 @@ class PacketController extends Controller
             ]);
         }
 
-        return redirect('admin/packets');
+        return redirect('admin/packets')->with("success", "Paket foto berhasil diubah!");
     }
 
     public function destroy($id)
@@ -119,7 +134,7 @@ class PacketController extends Controller
 
         $packet->delete();
 
-        return redirect('admin/packets');
+        return redirect('admin/packets')->with("success", "Paket foto berhasil dihapus!");
 
     }
 }
