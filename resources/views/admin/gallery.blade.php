@@ -21,12 +21,11 @@
                                     <div class="btn-group mb-5 float-right">
                                         <a href="{{ url('admin/galleries/create') }}" class="btn btn-success ">Tambah</a>
                                         <a href="{{ url('admin/galleries/delete') }}" class="btn btn-warning ">Hapus</a>
-                                        <form action="{{ url('admin/galleries') }}" method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-danger float-right">Hapus
-                                                Semua</button>
-                                        </form>
+                                        <a class="btn btn-danger float-right" data-toggle="modal"
+                                            data-target="#modal-delete-galleries">Hapus
+                                            Semua</a>
+
+
                                     </div>
                                 </div>
 
@@ -47,6 +46,33 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-delete-galleries" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Semua Galeri</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <form action="{{ url('admin/galleries') }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-success float-right">Ya, Hapus</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 @section('script-app')
     <!-- Ekko Lightbox -->

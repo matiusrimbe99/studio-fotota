@@ -74,6 +74,10 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('admin/customers', [CustomerController::class, 'index']);
     Route::get('admin/customers/{customer}', [CustomerController::class, 'show']);
 
+    Route::get('admin/edit-profile', [UserController::class, 'editProfileAdmin']);
+    Route::patch('admin/update-profile', [UserController::class, 'updateProfileAdmin']);
+    Route::get('admin/change-password', [UserController::class, 'changePasswordAdmin']);
+    Route::patch('admin/update-password', [UserController::class, 'updatePasswordAdmin']);
     Route::get('admin/users', [UserController::class, 'index']);
     Route::get('admin/users/create', [UserController::class, 'create']);
     Route::post('admin/users', [UserController::class, 'store']);

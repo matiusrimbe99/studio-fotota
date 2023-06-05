@@ -36,11 +36,12 @@ return [
             'throw' => false,
         ],
 
-        // 'image_uploads' => [
-        //     'driver' => 'local',
-        //     'root' => public_path('image'),
-        //     'throw' => false,
-        // ],
+        'image_uploads_dev' => [
+            'driver' => 'local',
+            'root' => public_path('image'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         'image_uploads' => [
             'driver' => 'local',

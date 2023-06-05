@@ -21,10 +21,10 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="studio_name">Nama Paket</label>
+                                    <label for="studio_name">Nama Studio</label>
                                     <input type="text" id="studio_name" name="studio_name"
                                         class="form-control @error('studio_name') is-invalid @enderror"
-                                        placeholder="Masukkan nama paket">
+                                        placeholder="Masukkan nama studio">
                                     @error('studio_name')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -33,7 +33,7 @@
                                     <label for="description">Keterangan</label>
                                     <input type="text" id="description" name="description"
                                         class="form-control @error('description') is-invalid @enderror"
-                                        placeholder="Masukkan deskripsi paket">
+                                        placeholder="Masukkan deskripsi studio">
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -42,7 +42,7 @@
                                     <label for="price">Harga</label>
                                     <input type="number" id="price" name="price"
                                         class="form-control @error('price') is-invalid @enderror"
-                                        placeholder="Masukkan harga paket">
+                                        placeholder="Masukkan harga studio">
                                     @error('price')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -62,7 +62,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <a href="{{ url('admin/studios') }}" class="btn btn-secondary float-left">Batalkan</a>
-                                <button type="submit" class="btn btn-success float-right">Tambah Paket</button>
+                                <button type="submit" class="btn btn-success float-right">Tambah Studio</button>
                             </div>
                         </form>
                     </div>

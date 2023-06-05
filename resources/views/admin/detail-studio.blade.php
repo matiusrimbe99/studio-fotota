@@ -35,14 +35,11 @@
                         <div class="card-footer">
                             <a href="{{ url('admin/studios') . '/' . $studio->id . '/edit' }}"
                                 class="btn btn-primary float-left">Edit
-                                Paket</a>
-
-                            <form action="{{ url('admin/studios') . '/' . $studio->id }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger float-right">Hapus
-                                    Paket</button>
-                            </form>
+                                Studio</a>
+                            <button type="button" class="btn btn-danger float-right" data-toggle="modal"
+                                data-target="#modal-delete-studio">
+                                Hapus Studio
+                            </button>
                         </div>
 
                     </div>
@@ -69,6 +66,32 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    <!-- Modal -->
+    <div class="modal fade" id="modal-delete-studio" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Data Studio</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <form action="{{ url('admin/studios') . '/' . $studio->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-success">Ya, Hapus</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 @section('script-app')
 @endsection

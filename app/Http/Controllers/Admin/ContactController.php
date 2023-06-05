@@ -68,6 +68,6 @@ class ContactController extends Controller
             'method_order' => $request->method_order,
         ]);
 
-        return redirect('admin/contacts');
+        return redirect('admin/contacts')->with("success", "Kontak dan rekening berhasil diperbarui!");
     }
 }

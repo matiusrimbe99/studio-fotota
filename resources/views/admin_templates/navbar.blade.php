@@ -11,12 +11,17 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="fas fa-cog mr-2"></i> Firmansyah Musmar
+                <i class="fas fa-cog mr-2"></i> {{ Auth::user()->admin->name }}
             </a>
             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">Pengaturan Admin</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
+                <a href="{{ url('admin/edit-profile') }}" class="dropdown-item">
+                    <i class="fas fa-user mr-2"></i> Ubah Profil
+
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="{{ url('admin/change-password') }}" class="dropdown-item">
                     <i class="fas fa-edit mr-2"></i> Ubah Sandi
 
                 </a>

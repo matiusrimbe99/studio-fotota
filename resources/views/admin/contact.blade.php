@@ -11,6 +11,11 @@
                     <h3 class="card-title">Data Kontak & Rekening</h3>
                 </div>
                 <div class="card-body">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

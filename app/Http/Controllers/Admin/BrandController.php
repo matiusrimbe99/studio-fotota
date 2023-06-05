@@ -50,7 +50,7 @@ class BrandController extends Controller
             'address' => $request->address,
         ]);
 
-        return redirect('admin/brands');
+        return redirect('admin/brands')->with("success", "Data profil berhasil diperbarui!");
     }
 
     public function formEditImageBrand($id)
@@ -88,6 +88,6 @@ class BrandController extends Controller
 
         }
 
-        return redirect('admin/brands');
+        return redirect('admin/brands')->with("status", "Gambar profil berhasil diperbarui!");
     }
 }

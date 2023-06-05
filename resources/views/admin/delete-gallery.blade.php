@@ -29,15 +29,13 @@
                                             <td>{{ $gallery->description }}</td>
                                             <td class="text-right py-0 align-middle">
                                                 <div class="btn-group">
-                                                    <form action="{{ url('admin/galleries') . '/' . $gallery->id }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <a href="{{ $gallery->image }}" target="_blank"
-                                                            class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                                                        <button type="submit" class="btn btn-danger btn-sm float-right"><i
-                                                                class="fas fa-trash"></i></button>
-                                                    </form>
+                                                    <a href="{{ $gallery->image }}" target="_blank"
+                                                        class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm float-right"
+                                                        data-toggle="modal" data-target="#modal-delete-gallery"><i
+                                                            class="fas
+                                                        fa-trash"></i></button>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -60,6 +58,33 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-delete-gallery" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Hapus Data Galeri</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <form action="{{ url('admin/galleries') . '/' . $gallery->id }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-success">Ya, Hapus</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endsection
 @section('script-app')
 @endsection

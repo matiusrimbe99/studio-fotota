@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -82,6 +83,87 @@ class UserController extends Controller
         }
 
         return view('admin/edit-user', compact('user', 'titleApp'));
+    }
+
+    public function editProfileAdmin()
+    {
+        $user = Auth::user();
+        $titleApp = 'Edit Profil';
+        $user = User::where('id', $user->id)->where('role_id', 1)->get()->first();
+
+        if (!$user) {
+            return abort(404);
+        }
+
+        return view('admin/edit-profile', compact('user', 'titleApp'));
+
+    }
+
+    public function changePasswordAdmin()
+    {
+        $user = Auth::user();
+        $titleApp = 'Ganti Password';
+        $user = User::where('id', $user->id)->where('role_id', 1)->get()->first();
+
+        if (!$user) {
+            return abort(404);
+        }
+
+        return view('admin/change-password', compact('user', 'titleApp'));
+
+    }
+
+    public function updatePasswordAdmin(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", "Password lama tidak cocok!");
+        }
+
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return back()->with("success", "Password berhasil diganti!");
+    }
+
+    public function updateProfileAdmin(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'gender' => 'required',
+            'nomor_hp' => 'required|numeric',
+        ]);
+
+        $nomor_hp = $request['nomor_hp'];
+        if ($request['nomor_hp'][0] == "0") {
+            $nomor_hp = substr($nomor_hp, 1);
+        }
+        if ($nomor_hp[0] == "8") {
+            $nomor_hp = "62" . $nomor_hp;
+        }
+
+        $userId = Auth::id();
+        $user = User::where('id', $userId)->where('role_id', 1);
+
+        if (!$user->get()->first()) {
+            return abort(404);
+        }
+
+        $user->get()->first()->admin->update([
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'nomor_hp' => $nomor_hp,
+        ]);
+
+        return back()->with("success", "Profil Admin berhasil diperbarui!");
+
     }
 
     public function update(Request $request, $id)

@@ -17,6 +17,11 @@
                         <!-- /.card-header -->
 
                         <div class="card-body">
+                            @if (session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <div class="form-group">
                                 <label for="brand_name">Nama Brand</label>
                                 <input type="text" class="form-control" id="brand_name" value="{{ $brand->brand_name }}"
@@ -58,6 +63,11 @@
                             <h3 class="card-title">Gambar Profil Studio</h3>
                         </div>
                         <div class="card-body">
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                             <img class="img-fluid pad" src="{{ $brand->image }}" alt="studio-image">
                         </div>
                         <div class="card-footer">
