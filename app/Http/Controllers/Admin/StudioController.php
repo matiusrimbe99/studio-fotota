@@ -4,16 +4,31 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Studio;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class StudioController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $titleApp = 'Paket Studio';
-        $studios = Studio::all();
-        return view('admin/studio', compact('studios', 'titleApp'));
+
+        if ($request->ajax()) {
+            $studios = Studio::all();
+
+            return Datatables::of($studios)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . "studios/" . $row->id . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'action'])->make(true);
+        }
+
+        return view('admin/studio', compact('titleApp'));
+
     }
 
     public function create()
@@ -41,7 +56,7 @@ class StudioController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect('admin/studios');
+        return redirect('admin/studios')->with("success", "Paket studio berhasil ditambah!");
 
     }
 
@@ -104,7 +119,7 @@ class StudioController extends Controller
             ]);
         }
 
-        return redirect('admin/studios');
+        return redirect('admin/studios')->with("success", "Paket studio berhasil diubah!");
     }
 
     public function destroy($id)
@@ -119,7 +134,7 @@ class StudioController extends Controller
 
         $studio->delete();
 
-        return redirect('admin/studios');
+        return redirect('admin/studios')->with("success", "Paket studio berhasil dihapus!");
 
     }
 }

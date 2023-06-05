@@ -41,7 +41,7 @@ class ContactController extends Controller
             'account_number' => 'required|numeric',
             'name_on_account' => 'required|string',
             'bank_name' => 'required|string',
-            'method_order' => 'required|string|max:255',
+            'method_order' => 'required|string',
         ]);
 
         $whatsapp = $request['whatsapp'];

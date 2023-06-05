@@ -4,17 +4,34 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $titleApp = 'Pengguna';
-        $users = User::where('role_id', 2)->get();
-        return view('admin/user', compact('users', 'titleApp'));
+
+        if ($request->ajax()) {
+            $users = User::where('role_id', 2)->get();
+            return Datatables::of($users)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('name', function ($row) {
+                return $row->customer->name;
+            })->addColumn('nomor_hp', function ($row) {
+                return $row->customer->nomor_hp;
+            })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . "users/" . $row->id . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'name', 'nomor_hp', 'action'])->make(true);
+        }
+
+        return view('admin/user', compact('titleApp'));
     }
 
     public function create()
@@ -57,7 +74,7 @@ class UserController extends Controller
             'image' => 'default.jpg',
         ]);
 
-        return redirect('admin/users');
+        return redirect('admin/users')->with("success", "Pengguna berhasil ditambah!");
 
     }
 
@@ -196,7 +213,7 @@ class UserController extends Controller
             'nomor_hp' => $nomor_hp,
         ]);
 
-        return redirect('admin/users');
+        return redirect('admin/users')->with("success", "Pengguna berhasil diubah!");
 
     }
 
@@ -211,6 +228,6 @@ class UserController extends Controller
         $user->get()->first()->customer->delete();
         $user->delete();
 
-        return redirect('admin/users');
+        return redirect('admin/users')->with("success", "Pengguna berhasil dihapus!");
     }
 }

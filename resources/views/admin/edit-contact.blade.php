@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                     <label for="method_order">Cara Pesan</label>
                                     <textarea name="method_order" id="method_order" class="form-control @error('method_order') is-invalid @enderror"
-                                        rows="3" placeholder="Masukkan cara pesan">{{ $contact->method_order }}</textarea>
+                                        rows="8" placeholder="Masukkan cara pesan">{{ $contact->method_order }}</textarea>
                                     @error('method_order')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror

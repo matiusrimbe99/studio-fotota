@@ -65,18 +65,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="price_packet">Harga Paket Foto</label>
-                                    <input id="price_packet" value="{{ $order->packet->price }}" class="form-control"
-                                        readonly>
+                                    <input id="price_packet" value="@currency($order->packet->price)" class="form-control" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="price_studio">Harga Studio</label>
-                                    <input id="price_studio" value="{{ $order->studio->price }}" class="form-control"
-                                        readonly>
+                                    <input id="price_studio" value="@currency($order->studio->price)" class="form-control" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="total">Total Harga</label>
-                                    <input id="total" value="{{ $order->packet->price + $order->studio->price }}"
-                                        class="form-control" readonly>
+                                    <input id="total" value="@currency($order->packet->price + $order->studio->price)" class="form-control" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="status_order_id">Aksi</label>

@@ -7,44 +7,140 @@ use App\Models\Order;
 use App\Models\Packet;
 use App\Models\Studio;
 use Carbon\Traits\Date;
+use DataTables;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $titleApp = 'Pesanan Masuk';
-        $orders = Order::where('status_order_id', 2)->get();
-        return view('admin/order', compact('orders', 'titleApp'));
+
+        if ($request->ajax()) {
+            $orders = Order::where('status_order_id', 2)->get();
+
+            return Datatables::of($orders)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('name', function ($row) {
+                return $row->user->customer->name;
+            })->addColumn('packet_name', function ($row) {
+                return $row->packet->packet_name;
+            })->addColumn('studio_name', function ($row) {
+                return $row->studio->studio_name;
+            })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . "orders/" . $row->id . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'name', 'packet_name', 'studio_name', 'action'])->make(true);
+        }
+
+        return view('admin/order', compact('titleApp'));
+
     }
 
-    public function listAllOrder()
+    public function listAllOrder(Request $request)
     {
         $titleApp = 'Semua Pesanan';
-        $orders = Order::all();
-        return view('admin/all-order', compact('orders', 'titleApp'));
+
+        if ($request->ajax()) {
+            $orders = Order::all();
+            return Datatables::of($orders)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('name', function ($row) {
+                return $row->user->customer->name;
+            })->addColumn('created_at', function ($row) {
+                return date_format($row->created_at, 'Y-m-d H:i:s');
+            })->addColumn('status_name', function ($row) {
+                return $row->statusOrder->status_name;
+            })->addColumn('total_price', function ($row) {
+                return $row->packet->price + $row->studio->price;
+            })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . $row->id . "/all" . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'name', 'created_at', 'status_name', 'total_price', 'action'])->make(true);
+        }
+
+        return view('admin/all-order', compact('titleApp'));
     }
 
-    public function listOrderPayments()
+    public function listOrderPayments(Request $request)
     {
         $titleApp = 'Pembayaran';
-        $orders = Order::where('status_order_id', 4)->get();
-        return view('admin/payment-order', compact('orders', 'titleApp'));
+
+        if ($request->ajax()) {
+            $orders = Order::where('status_order_id', 4)->get();
+
+            return Datatables::of($orders)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('name', function ($row) {
+                return $row->user->customer->name;
+            })->addColumn('packet_name', function ($row) {
+                return $row->packet->packet_name;
+            })->addColumn('studio_name', function ($row) {
+                return $row->studio->studio_name;
+            })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . $row->id . "/payment" . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'name', 'packet_name', 'studio_name', 'action'])->make(true);
+        }
+
+        return view('admin/payment-order', compact('titleApp'));
 
     }
 
-    public function listOrderFullPayments()
+    public function listOrderFullPayments(Request $request)
     {
         $titleApp = 'Pesanan Lunas';
-        $orders = Order::where('status_order_id', 6)->get();
-        return view('admin/fullpayment-order', compact('orders', 'titleApp'));
+
+        if ($request->ajax()) {
+            $orders = Order::where('status_order_id', 6)->get();
+            return Datatables::of($orders)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('name', function ($row) {
+                return $row->user->customer->name;
+            })->addColumn('packet_name', function ($row) {
+                return $row->packet->packet_name;
+            })->addColumn('studio_name', function ($row) {
+                return $row->studio->studio_name;
+            })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . $row->id . "/full-payment" . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'name', 'packet_name', 'studio_name', 'action'])->make(true);
+        }
+
+        return view('admin/fullpayment-order', compact('titleApp'));
     }
 
-    public function listOrderCompleted()
+    public function listOrderCompleted(Request $request)
     {
         $titleApp = 'Pesanan Selesai';
-        $orders = Order::where('status_order_id', 7)->get();
-        return view('admin/completed-order', compact('orders', 'titleApp'));
+
+        if ($request->ajax()) {
+            $orders = Order::where('status_order_id', 7)->get();
+            return Datatables::of($orders)->addIndexColumn()
+                ->addColumn('number', function ($row) {
+                    static $number = 1;
+                    return $number++;
+                })->addColumn('name', function ($row) {
+                return $row->user->customer->name;
+            })->addColumn('packet_name', function ($row) {
+                return $row->packet->packet_name;
+            })->addColumn('studio_name', function ($row) {
+                return $row->studio->studio_name;
+            })->addColumn('action', function ($row) {
+                $btn = '<a class="btn btn-sm btn-info" href="' . $row->id . "/completed" . '"><i class="fas fa-edit"></i> View</a>';
+                return $btn;
+            })->rawColumns(['number', 'name', 'packet_name', 'studio_name', 'action'])->make(true);
+        }
+
+        return view('admin/completed-order', compact('titleApp'));
     }
 
     public function showAllOrder($id)

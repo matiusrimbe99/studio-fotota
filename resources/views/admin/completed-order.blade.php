@@ -1,6 +1,10 @@
-@extends('admin_templates/app')
+@extends('admin_templates.app')
 @section('title-app', $titleApp)
 @section('css-app')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 @section('main-content')
     <!-- Main content -->
@@ -14,55 +18,84 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-hover table-bordered">
+                            <table id="completed-order-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">#</th>
+                                        <th>#</th>
                                         <th>Pemesan</th>
                                         <th>Tanggal Selesai</th>
                                         <th>Paket Foto</th>
-                                        <th>Studio</th>
-                                        <th style="width: 50px">Aksi</th>
+                                        <th>Paket Studio</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php $nomor = 1; ?>
-                                    @foreach ($orders as $order)
-                                        <tr>
-                                            <td>{{ $nomor++ }}</td>
-                                            <td>{{ $order->user->customer->name }}</td>
-                                            <td>{{ $order->completed_at }}</td>
-                                            <td>{{ $order->packet->packet_name }}</td>
-                                            <td>{{ $order->studio->studio_name }}</td>
-                                            <td class="text-center"><a
-                                                    href="{{ url('admin/orders/' . $order->id . '/completed') }}">
-                                                    <i class="nav-icon fas text-success fa-edit"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
+                                <tbody></tbody>
+
                             </table>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
                     </div>
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
             </div>
             <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
 @endsection
 @section('script-app')
+    <!-- DataTables  & Plugins -->
+    <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('admin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            $("#completed-order-table").DataTable({
+                "responsive": true,
+                // "lengthChange": false,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "ajax": "{{ url('admin/orders/completed') }}",
+                "columns": [{
+                        "data": 'number',
+                        "name": 'number'
+                    },
+                    {
+                        "data": 'name',
+                        "name": 'name'
+                    },
+                    {
+                        "data": 'completed_at',
+                        "name": 'completed_at'
+                    },
+                    {
+                        "data": 'packet_name',
+                        "name": 'packet_name'
+                    },
+                    {
+                        "data": 'studio_name',
+                        "name": 'studio_name'
+                    },
+                    {
+                        "data": 'action',
+                        "name": 'action',
+                        "orderable": false,
+                        "searchable": false
+                    },
+                ]
+            });
+        });
+    </script>
 @endsection

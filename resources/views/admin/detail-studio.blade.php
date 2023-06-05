@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="price">Harga Paket</label>
-                                <input id="price" class="form-control" value="{{ $studio->price }}" readonly>
+                                <input id="price" class="form-control" value="@currency($studio->price)" readonly>
                             </div>
                         </div>
                         <!-- /.card-body -->
