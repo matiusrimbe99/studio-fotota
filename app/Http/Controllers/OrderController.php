@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Contact;
 use App\Models\Order;
+use App\Models\OrderMethod;
 use App\Models\Packet;
 use App\Models\Studio;
 use Carbon\Traits\Date;
@@ -269,10 +271,11 @@ class OrderController extends Controller
     {
         $titleApp = 'Create Order';
         $brand = Brand::where('id', 1)->get()->first();
+        $orderMethod = OrderMethod::where('id', 1)->get()->first();
         $user = auth()->user();
         $packets = Packet::all();
         $studios = Studio::all();
-        return view('create-order', compact('titleApp', 'brand', 'user', 'packets', 'studios'));
+        return view('create-order', compact('titleApp', 'brand', 'orderMethod', 'user', 'packets', 'studios'));
     }
 
     public function store(Request $request)
@@ -312,6 +315,7 @@ class OrderController extends Controller
     {
         $titleApp = 'Form Payment';
         $brand = Brand::where('id', 1)->get()->first();
+        $contact = Contact::where('id', 1)->get()->first();
         $user = auth()->user();
         $order = Order::where('id', $id)->where('user_id', $user->id)->where('status_order_id', 3)->get()->first();
 
@@ -319,7 +323,7 @@ class OrderController extends Controller
             return abort(404);
         }
 
-        return view('payment-order', compact('titleApp', 'brand', 'order'));
+        return view('payment-order', compact('titleApp', 'brand', 'contact', 'order'));
     }
 
     public function updateCustomerPayment(Request $request, $id)

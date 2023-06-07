@@ -37,16 +37,15 @@
 
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
                         <div class="content">
-                            <h3>{{ $brand->brand_name }}</h3>
-                            <h2>Kami adalah tim fotografi berpengalaman yang berkomitmen untuk mengabadikan momen-momen
-                                berharga dalam hidup Anda.</h2>
+                            <h3>About Us</h3>
+                            <h2>{{ $about->lead_about }}</h2>
                             <p>
-                                {{ $brand->about }}
+                                {{ $about->about_us }}
                             </p>
                             <div class="text-center text-lg-start">
-                                <a href="#"
+                                <a href="#contact"
                                     class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
-                                    <span>Read More</span>
+                                    <span>Hubungi Kami</span>
                                     <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
@@ -54,7 +53,7 @@
                     </div>
 
                     <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="{{ asset('customer/img/about.jpg') }}" class="img-fluid" alt="">
+                        <img src="{{ $about->image }}" class="img-fluid" alt="">
                     </div>
 
                 </div>
@@ -178,51 +177,69 @@
         </section>
         <!-- End Recent Blog Posts Section -->
 
-        <!-- ======= Values Section ======= -->
-        <section id="values" class="values">
+        <!-- ======= Features Section ======= -->
+        <section id="features" class="features">
 
-            <div class="container" data-aos="fade-up">
+            <div class="container aos-init aos-animate" data-aos="fade-up">
 
                 <header class="section-header">
                     <h2>Cara Pesan</h2>
-                    <p>Pahami Cara Pesan Jasa</p>
+                    <p>Berikut Cara Pesan Jasa Kami</p>
                 </header>
+                <!-- Feature Icons -->
+                <div class="row mt-5 feature-icons aos-init aos-animate" data-aos="fade-up">
+                    <div class="row">
+                        <div class="col-xl-12 d-flex content">
+                            <div class="row align-self-center gy-4">
 
-                <div class="row">
+                                <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up">
+                                    <i class="ri-stack-line"></i>
+                                    <div>
+                                        <h4>Langkah 1</h4>
+                                        <p>{{ $orderMethod->first }}</p>
+                                    </div>
+                                </div>
 
-                    {{-- <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="box">
-                            <img src="{{ asset('customer/img/values-1.png') }}" class="img-fluid" alt="">
-                            <h3>Ad cupiditate sed est odio</h3>
-                            <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.
-                            </p>
+                                <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up"
+                                    data-aos-delay="100">
+                                    <i class="ri-stack-line"></i>
+                                    <div>
+                                        <h4>Langkah 2</h4>
+                                        <p>{{ $orderMethod->second }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up"
+                                    data-aos-delay="200">
+                                    <i class="ri-stack-line"></i>
+                                    <div>
+                                        <h4>Langkah 3</h4>
+                                        <p>{{ $orderMethod->third }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 icon-box aos-init aos-animate" data-aos="fade-up"
+                                    data-aos-delay="300">
+                                    <i class="ri-stack-line"></i>
+                                    <div>
+                                        <h4>Langkah 4</h4>
+                                        <p>{{ $orderMethod->fourth }}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div> --}}
 
-                    <div class="col-lg-12 mt-12 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
-                        <div class="box">
-                            {{-- <img src="{{ asset('customer/img/values-2.png') }}" class="img-fluid" alt=""> --}}
-                            <h3>Simak dan pahami cara pesan jasa fotografi</h3>
-                            <p>{{ $contact->method_order }}
-                            </p>
-                        </div>
                     </div>
 
-                    {{-- <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
-                        <div class="box">
-                            <img src="{{ asset('customer/img/values-3.png') }}" class="img-fluid" alt="">
-                            <h3>Fugit cupiditate alias nobis.</h3>
-                            <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.
-                            </p>
-                        </div>
-                    </div> --}}
-
-                </div>
+                </div><!-- End Feature Icons -->
 
             </div>
 
         </section>
-        <!-- End Values Section -->
+        <!-- End Features Section -->
+
+
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
@@ -247,25 +264,31 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="info-box">
-                                    <i class="bi bi-whatsapp"></i>
-                                    <h3>Whatsapp</h3>
-                                    <p>{{ $contact->name_on_account }}<br>+{{ $contact->whatsapp }}</p>
-                                </div>
+                                <a href="https://api.whatsapp.com/send/?phone={{ $contact->whatsapp }}" target="_blank">
+                                    <div class="info-box">
+                                        <i class="bi bi-whatsapp"></i>
+                                        <h3>Whatsapp</h3>
+                                        <p>{{ $contact->name_on_account }}<br>+{{ $contact->whatsapp }}</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-md-6">
-                                <div class="info-box">
-                                    <i class="bi bi-instagram"></i>
-                                    <h3>Instagram</h3>
-                                    <p>{{ $contact->instagram }}</p>
-                                </div>
+                                <a href="https://www.instagram.com/{{ $contact->instagram }}" target="_blank">
+                                    <div class="info-box">
+                                        <i class="bi bi-instagram"></i>
+                                        <h3>Instagram</h3>
+                                        <p>{{ $contact->instagram }}</p>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col-md-6">
-                                <div class="info-box">
-                                    <i class="bi bi-facebook"></i>
-                                    <h3>Facebook</h3>
-                                    <p>{{ $contact->facebook }}</p>
-                                </div>
+                                <a href="https://www.facebook.com/{{ $contact->facebook }}" target="_blank">
+                                    <div class="info-box">
+                                        <i class="bi bi-facebook"></i>
+                                        <h3>Facebook</h3>
+                                        <p>{{ $contact->facebook }}</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
 

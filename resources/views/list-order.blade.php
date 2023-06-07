@@ -140,9 +140,9 @@
                                             <td>{{ $order->shooting_date }}</td>
                                             <td>{{ $order->packet->packet_name }}</td>
                                             <td>{{ $order->studio->studio_name }}</td>
-                                            <td>{{ $order->packet->price }}</td>
-                                            <td>{{ $order->studio->price }}</td>
-                                            <td>{{ $order->packet->price + $order->studio->price }}</td>
+                                            <td>@currency($order->packet->price)</td>
+                                            <td>@currency($order->studio->price)</td>
+                                            <td>@currency($order->packet->price + $order->studio->price)</td>
                                             <td class="text-center">
                                                 @if ($order->status_order_id == 6)
                                                     <p class="text-success">{{ $order->statusOrder->status_name }}</p>

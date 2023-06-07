@@ -117,42 +117,15 @@
             </header>
 
             <div class="row gy-4">
-
-                {{-- <div class="col-lg-6">
-
-                    <div class="row gy-4">
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-geo-alt"></i>
-                                <h3>Alamat</h3>
-                                <p>{{ $brand->address }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-whatsapp"></i>
-                                <h3>Whatsapp</h3>
-                                <p>{{ $contact->name_on_account }}<br>+{{ $contact->whatsapp }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-instagram"></i>
-                                <h3>Instagram</h3>
-                                <p>{{ $contact->instagram }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-facebook"></i>
-                                <h3>Facebook</h3>
-                                <p>{{ $contact->facebook }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> --}}
-                <div class="col-lg-6"></div>
+                <div class="col-lg-6">
+                    <h4 style="font-weight:bold">Langkah Pemesanan</h4>
+                    <ol style="margin-top:30px">
+                        <li style="margin-top:30px"> {{ $orderMethod->first }}</li>
+                        <li style="margin-top:30px"> {{ $orderMethod->second }}</li>
+                        <li style="margin-top:30px"> {{ $orderMethod->third }}</li>
+                        <li style="margin-top:30px"> {{ $orderMethod->fourth }}</li>
+                    </ol>
+                </div>
                 <div class="col-lg-6">
                     <form action="{{ url('orders') }}" method="POST" class="php-email-form">
                         @csrf

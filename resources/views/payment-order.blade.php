@@ -117,42 +117,12 @@
             </header>
 
             <div class="row gy-4">
-
-                {{-- <div class="col-lg-6">
-
-                    <div class="row gy-4">
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-geo-alt"></i>
-                                <h3>Alamat</h3>
-                                <p>{{ $brand->address }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-whatsapp"></i>
-                                <h3>Whatsapp</h3>
-                                <p>{{ $contact->name_on_account }}<br>+{{ $contact->whatsapp }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-instagram"></i>
-                                <h3>Instagram</h3>
-                                <p>{{ $contact->instagram }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="info-box">
-                                <i class="bi bi-facebook"></i>
-                                <h3>Facebook</h3>
-                                <p>{{ $contact->facebook }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> --}}
-                <div class="col-lg-6"></div>
+                <div class="col-lg-6">
+                    <p>{{ $contact->method_order }}</p>
+                    <h4 class="text-warning">Rekening {{ $contact->bank_name }}</h4>
+                    <h4 class="text-danger">{{ $contact->account_number }} a/n
+                        {{ $contact->name_on_account }}</h4>
+                </div>
                 <div class="col-lg-6">
                     <form enctype="multipart/form-data"
                         action="{{ url('orders/customers/' . $order->id . '/payment') }}" method="POST"
@@ -171,10 +141,6 @@
                             </div>
 
                             <div class="col-md-12 text-center">
-                                {{-- <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div> --}}
-
                                 <button type="submit">Lanjutkan</button>
                             </div>
 

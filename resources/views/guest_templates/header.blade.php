@@ -13,7 +13,7 @@
                 <li><a class="nav-link scrollto" href="#pricing">Paket Foto</a></li>
                 <li><a class="nav-link scrollto" href="#portfolio">Galeri</a></li>
                 <li><a class="nav-link scrollto" href="#recent-blog-posts">Paket Studio</a></li>
-                <li><a class="nav-link scrollto" href="#values">Cara Pesan</a></li>
+                <li><a class="nav-link scrollto" href="#features">Cara Pesan</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 @if (Auth::check() && Auth::user()->role_id == 2)
                     <li class="dropdown"><a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>

@@ -33,7 +33,6 @@ class BrandController extends Controller
         $request->validate([
             'brand_name' => 'required|string',
             'description' => 'required|string|max:255',
-            'about' => 'required|string|max:255',
             'address' => 'required|string',
         ]);
 
@@ -46,7 +45,6 @@ class BrandController extends Controller
         $brand->update([
             'brand_name' => $request->brand_name,
             'description' => $request->description,
-            'about' => $request->about,
             'address' => $request->address,
         ]);
 

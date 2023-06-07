@@ -101,6 +101,19 @@
                          <p>Pengguna</p>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a href="{{ url('admin/order-methods') }}" class="nav-link">
+                         <i class="fas fa-list nav-icon"></i>
+                         <p>Cara Pesan</p>
+                     </a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a href="{{ url('admin/abouts') }}" class="nav-link">
+                         <i class="fas fa-copy nav-icon"></i>
+                         <p>About Page</p>
+                     </a>
+                 </li>
 
                  <li class="nav-item">
                      <a href="{{ url('admin/brands') }}" class="nav-link">

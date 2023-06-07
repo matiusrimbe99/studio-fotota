@@ -12,7 +12,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Data Profil Studio</h3>
+                            <h3 class="card-title">Data Tentang Kami</h3>
                         </div>
                         <!-- /.card-header -->
 
@@ -22,28 +22,24 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
+
                             <div class="form-group">
-                                <label for="brand_name">Nama Brand</label>
-                                <input type="text" class="form-control" id="brand_name" value="{{ $brand->brand_name }}"
-                                    readonly>
+                                <label for="lead_about">Lead About</label>
+                                <textarea class="form-control" id="lead_about" rows="8" readonly>{{ $about->lead_about }}</textarea>
                             </div>
+
                             <div class="form-group">
-                                <label for="address">Alamat Brand</label>
-                                <input type="text" id="address" class="form-control" value="{{ $brand->address }}"
-                                    readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Deskripsi</label>
-                                <textarea class="form-control" id="description" rows="3" readonly>{{ $brand->description }}</textarea>
+                                <label for="about_us">Tentang Kami</label>
+                                <textarea class="form-control" id="about_us" rows="8" readonly>{{ $about->about_us }}</textarea>
                             </div>
 
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <a href="{{ url('admin/brands') . '/' . $brand->id . '/edit' }}" class="btn btn-primary">Edit
-                                Data
-                                Profil</a>
+                            <a href="{{ url('admin/abouts') . '/' . $about->id . '/edit' }}" class="btn btn-primary">Edit
+                                Tentang Kami
+                            </a>
                         </div>
 
                     </div>
@@ -55,7 +51,7 @@
                     <!-- Form Element sizes -->
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Gambar Profil Studio</h3>
+                            <h3 class="card-title">Gambar Tentang Kami</h3>
                         </div>
                         <div class="card-body">
                             @if (session('status'))
@@ -63,11 +59,11 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <img class="img-fluid pad" src="{{ $brand->image }}" alt="studio-image">
+                            <img class="img-fluid pad" src="{{ $about->image }}" alt="studio-image">
                         </div>
                         <div class="card-footer">
-                            <a href="{{ url('admin/brands') . '/' . $brand->id . '/edit-image' }}"
-                                class="btn btn-primary">Ganti Gambar Profil</a>
+                            <a href="{{ url('admin/abouts') . '/' . $about->id . '/edit-image' }}"
+                                class="btn btn-primary">Ganti Gambar</a>
                         </div>
                         <!-- /.card-body -->
                     </div>

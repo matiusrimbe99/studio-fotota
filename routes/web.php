@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\OrderMethodController;
 use App\Http\Controllers\Admin\PacketController;
 use App\Http\Controllers\Admin\StudioController;
 use App\Http\Controllers\Admin\UserController;
@@ -67,9 +69,19 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::patch('admin/brands/{brand}', [BrandController::class, 'update']);
     Route::patch('admin/brands/{brand}/update-image', [BrandController::class, 'updateImageBrand']);
 
+    Route::get('admin/abouts', [AboutController::class, 'index']);
+    Route::get('admin/abouts/{about}/edit', [AboutController::class, 'formEditAbout']);
+    Route::get('admin/abouts/{about}/edit-image', [AboutController::class, 'formEditImageAbout']);
+    Route::patch('admin/abouts/{about}', [AboutController::class, 'update']);
+    Route::patch('admin/abouts/{about}/update-image', [AboutController::class, 'updateImageAbout']);
+
     Route::get('admin/contacts', [ContactController::class, 'index']);
     Route::patch('admin/contacts', [ContactController::class, 'update']);
     Route::get('admin/contacts/edit', [ContactController::class, 'edit']);
+
+    Route::get('admin/order-methods', [OrderMethodController::class, 'index']);
+    Route::patch('admin/order-methods', [OrderMethodController::class, 'update']);
+    Route::get('admin/order-methods/edit', [OrderMethodController::class, 'edit']);
 
     Route::get('admin/customers', [CustomerController::class, 'index']);
     Route::get('admin/customers/{customer}', [CustomerController::class, 'show']);
