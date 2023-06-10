@@ -57,8 +57,8 @@
                             <ul>
                                 <li><a href="{{ url('orders/create') }}">Order Jasa</a></li>
                                 <li><a href="{{ url('orders/customers') }}">List Order</a></li>
-                                <li><a href="/">Edit Profil</a></li>
-                                <li><a href="/">Ganti Password</a></li>
+                                {{-- <li><a href="/">Edit Profil</a></li>
+                                <li><a href="/">Ganti Password</a></li> --}}
                             </ul>
                         </li>
                     @endif
@@ -146,7 +146,7 @@
                                             <td class="text-center">
                                                 @if ($order->status_order_id == 6)
                                                     <p class="text-success">{{ $order->statusOrder->status_name }}</p>
-                                                    <a href="{{ url('orders/customers/' . $order->id . '/payment') }}"
+                                                    <a href="{{ url('orders/customers/' . $order->id . '/e-tiket') }}"
                                                         class="btn btn-success">Cetak E-Tiket</a>
                                                 @elseif ($order->status_order_id == 3)
                                                     <p class="text-success">{{ $order->statusOrder->status_name }}

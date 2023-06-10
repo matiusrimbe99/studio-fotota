@@ -57,8 +57,8 @@
                             <ul>
                                 <li><a href="{{ url('orders/create') }}">Order Jasa</a></li>
                                 <li><a href="{{ url('orders/customers') }}">List Order</a></li>
-                                <li><a href="/">Edit Profil</a></li>
-                                <li><a href="/">Ganti Password</a></li>
+                                {{-- <li><a href="/">Edit Profil</a></li>
+                                <li><a href="/">Ganti Password</a></li> --}}
                             </ul>
                         </li>
                     @endif

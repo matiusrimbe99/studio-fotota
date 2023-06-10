@@ -18,6 +18,13 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <a href="{{ url('admin/orders/cetak') }}" class="btn btn-success float-right"><i
+                                            class="fas fa-print"></i> Cetak
+                                        Laporan</a>
+                                </div>
+                            </div>
                             <table id="all-order-table" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -30,7 +37,6 @@
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
-
                             </table>
                         </div>
                         <!-- /.card-body -->

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,8 @@ Route::get('auth/register', [AuthController::class, 'formRegister']);
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::get('auth/login', [AuthController::class, 'login'])->name('login');
 Route::post('auth/login', [AuthController::class, 'authenticate']);
+
+Route::get('pdf', [PDFController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('auth/logout', [AuthController::class, 'logout']);
@@ -99,6 +102,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::delete('admin/users/{user}', [UserController::class, 'destroy']);
 
     Route::get('admin/orders', [OrderController::class, 'index']);
+    Route::get('admin/orders/cetak', [OrderController::class, 'cetakLaporan']);
     Route::get('admin/orders/payments', [OrderController::class, 'listOrderPayments']);
     Route::get('admin/orders/full-payments', [OrderController::class, 'listOrderFullPayments']);
     Route::get('admin/orders/completed', [OrderController::class, 'listOrderCompleted']);
@@ -119,5 +123,6 @@ Route::middleware(['auth', 'checkrole:2'])->group(function () {
     Route::post('orders', [OrderController::class, 'store']);
     Route::get('orders/customers', [OrderController::class, 'showOrderByCustomer']);
     Route::get('orders/customers/{order}/payment', [OrderController::class, 'formCustomerPayment']);
+    Route::get('orders/customers/{order}/e-tiket', [OrderController::class, 'generatePDFTiket']);
     Route::patch('orders/customers/{order}/payment', [OrderController::class, 'updateCustomerPayment']);
 });
