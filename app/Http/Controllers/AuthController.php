@@ -55,14 +55,20 @@ class AuthController extends Controller
 
     public function login()
     {
-        if (Auth::check() && Auth::user()->role_id == 1) {
-            return redirect('admin/dashboard')->with('error_message', 'Anda sudah login!');
-        }
         if (Auth::check() && Auth::user()->role_id == 2) {
             return redirect('/')->with('error_message', 'Anda sudah login!');
         }
 
         return view('auth/login');
+    }
+
+    public function loginAdmin()
+    {
+        if (Auth::check() && Auth::user()->role_id == 1) {
+            return redirect('admin/dashboard')->with('error_message', 'Anda sudah login!');
+        }
+
+        return view('auth/loginAdmin');
     }
 
     public function authenticate(Request $request)
@@ -72,7 +78,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('username', $request->username)->first();
+        $user = User::where('username', $request->username)->where('role_id', 2)->first();
 
         if (!$user) {
             return redirect('auth/login')->with('error_message', 'Akun tidak tersedia!');
@@ -80,13 +86,31 @@ class AuthController extends Controller
 
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            if ($user->role_id == 1) {
-                return redirect('admin/dashboard');
-            }
             return redirect('/');
         }
 
         return redirect('auth/login')->with('error_message', 'Username atau password Anda salah!');
+    }
+
+    public function authenticateAdmin(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('username', $request->username)->where('role_id', 1)->first();
+
+        if (!$user) {
+            return redirect('admin/login')->with('error_message', 'Akun tidak tersedia!');
+        }
+
+        $credentials = $request->only('username', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect('admin/dashboard');
+        }
+
+        return redirect('admin/login')->with('error_message', 'Username atau password Anda salah!');
     }
 
     public function logout()
