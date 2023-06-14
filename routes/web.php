@@ -27,12 +27,14 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/', [LandingPageController::class, 'index'])->name('homepage');
 
 Route::get('auth/register', [AuthController::class, 'formRegister']);
 Route::post('auth/register', [AuthController::class, 'register']);
 Route::get('auth/login', [AuthController::class, 'login'])->name('login');
+Route::get('admin/login', [AuthController::class, 'loginAdmin'])->name('loginAdmin');
 Route::post('auth/login', [AuthController::class, 'authenticate']);
+Route::post('admin/login', [AuthController::class, 'authenticateAdmin']);
 
 Route::get('pdf', [PDFController::class, 'index']);
 
