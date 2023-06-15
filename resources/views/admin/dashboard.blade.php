@@ -27,43 +27,11 @@
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>{{ $countOrderPayment }}</h3>
-
-                            <p>Pembayaran</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="{{ url('admin/orders/payments') }}" class="small-box-footer">Lihat Selengkapnya <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>{{ $countUsers }}</h3>
-
-                            <p>Pelanggan</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="{{ url('admin/customers') }}" class="small-box-footer">Lihat Selengkapnya <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $countorderFullPayment }}</h3>
 
-                            <p>Pesanan Lunas</p>
+                            <p>Pembayaran</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
@@ -73,8 +41,6 @@
                     </div>
                 </div>
                 <!-- ./col -->
-            </div>
-            <div class="row">
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-success">
@@ -103,6 +69,26 @@
                             <i class="ion ion-pie-graph"></i>
                         </div>
                         <a href="{{ url('admin/orders/all') }}" class="small-box-footer">Lihat Selengkapnya <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+
+            </div>
+            <div class="row">
+
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ $countUsers }}</h3>
+
+                            <p>Pelanggan</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="{{ url('admin/customers') }}" class="small-box-footer">Lihat Selengkapnya <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
