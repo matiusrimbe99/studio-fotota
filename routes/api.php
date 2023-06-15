@@ -19,6 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth', 'checkrole:2'])->group(function () {
-    Route::post('/midtrans-callback', [OrderController::class, 'callback']);
-});
+Route::post('/midtrans-callback', [OrderController::class, 'callback']);
