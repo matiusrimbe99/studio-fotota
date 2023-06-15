@@ -127,4 +127,5 @@ Route::middleware(['auth', 'checkrole:2'])->group(function () {
     Route::get('orders/customers/{order}/payment', [OrderController::class, 'formCustomerPayment']);
     Route::get('orders/customers/{order}/e-tiket', [OrderController::class, 'generatePDFTiket']);
     Route::patch('orders/customers/{order}/payment', [OrderController::class, 'updateCustomerPayment']);
+    // Route::post('/midtrans-callback', [OrderController::class, 'callback']);
 });
