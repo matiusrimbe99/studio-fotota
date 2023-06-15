@@ -333,7 +333,7 @@ class OrderController extends Controller
 
         if ($hashed == $request->signature_key) {
             if ($request->transaction_status == 'capture') {
-                $order = Order::find($request->order_id);
+                $order = Order::where('code_order', $request->order_id);
                 $order->update([
                     'status_order_id' => 6,
                     'paid_at' => now()->format('Y-m-d H:i:s'),
