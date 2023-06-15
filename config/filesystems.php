@@ -45,7 +45,7 @@ return [
 
         'image_uploads' => [
             'driver' => 'local',
-            'root' => __DIR__ . '/../../../public_html/studio.matiusrimbe.site/image',
+            'root' => __DIR__ . '/../../../public_html/studiofotota.site/image',
             'visibility' => 'public',
             'throw' => false,
         ],

@@ -34,7 +34,7 @@
                             <p>Pembayaran</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <i class="ion ion-bag"></i>
                         </div>
                         <a href="{{ url('admin/orders/full-payments') }}" class="small-box-footer">Lihat Selengkapnya <i
                                 class="fas fa-arrow-circle-right"></i></a>
@@ -66,7 +66,7 @@
                             <p>Semua Pesanan</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <i class="ion ion-bag"></i>
                         </div>
                         <a href="{{ url('admin/orders/all') }}" class="small-box-footer">Lihat Selengkapnya <i
                                 class="fas fa-arrow-circle-right"></i></a>
