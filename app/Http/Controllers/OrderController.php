@@ -290,10 +290,37 @@ class OrderController extends Controller
             return abort(404);
         }
 
-        $order->update([
-            'status_order_id' => $request->status_order_id,
-            'reject_message' => $request->reject_message,
-        ]);
+        if ($request->status_order_id == 3) {
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            \Midtrans\Config::$isProduction = config('midtrans.is_production');
+            \Midtrans\Config::$isSanitized = true;
+            \Midtrans\Config::$is3ds = true;
+            $dataOrder = $order->get()->first();
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $dataOrder->code_order,
+                    'gross_amount' => $dataOrder->packet->price + $dataOrder->studio->price,
+                ),
+                'customer_details' => array(
+                    'first_name' => $dataOrder->user->customer->name,
+                    'email' => $dataOrder->user->email,
+                    'phone' => $dataOrder->user->customer->nomor_hp,
+                ),
+            );
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+            $order->update([
+                'status_order_id' => $request->status_order_id,
+                'snap_token' => $snapToken,
+            ]);
+        } else if ($request->status_order_id == 1) {
+            $order->update([
+                'status_order_id' => $request->status_order_id,
+                'reject_message' => $request->reject_message,
+            ]);
+        } else {
+            return abort(400);
+        }
 
         return redirect('admin/orders');
 
@@ -383,7 +410,7 @@ class OrderController extends Controller
 
     public function formCustomerPayment($id)
     {
-        $titleApp = 'Form Payment';
+        $titleApp = 'Payment Gateway';
         $brand = Brand::where('id', 1)->get()->first();
         $contact = Contact::where('id', 1)->get()->first();
         $user = auth()->user();

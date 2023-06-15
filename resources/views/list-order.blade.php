@@ -133,6 +133,12 @@
                                     <th>Status Order</th>
                                 </thead>
                                 <tbody class="align-middle">
+                                    @if ($orders->isEmpty())
+                                        <tr>
+                                            <td colspan="9" class="text-center">Data tidak ditemukan</td>
+                                        </tr>
+                                    @endif
+
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->code_order }}</td>

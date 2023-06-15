@@ -9,6 +9,9 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('midtrans.client_key') }}"></script>
+
     <!-- Favicons -->
     <link href="{{ asset('customer/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('customer/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
@@ -113,7 +116,7 @@
 
             <header class="section-header">
                 <h2>Payment Order</h2>
-                <p>Lakukan Pembayaran dan Upload Bukti</p>
+                <p>Proses Pembayaran (Payment Gateway)</p>
             </header>
 
             <div class="row gy-4">
@@ -124,26 +127,15 @@
                         {{ $contact->name_on_account }}</h4>
                 </div>
                 <div class="col-lg-6">
-                    <form enctype="multipart/form-data"
-                        action="{{ url('orders/customers/' . $order->id . '/payment') }}" method="POST"
-                        class="php-email-form">
-                        @csrf
-                        @method('PATCH')
+                    <form class="php-email-form">
                         <div class="row gy-4">
-
                             <div class="col-md-12">
-                                <label for="payment_proof" class="form-label">Upload Bukti Pembayaran</label>
-                                <input class="form-control @error('payment_proof') is-invalid @enderror"
-                                    name="payment_proof" type="file" id="payment_proof">
-                                @error('payment_proof')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <p>Klik tombol dibawah ini untuk memilih metode pembayaran</p>
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <button type="submit">Lanjutkan</button>
+                                <button type="button" id="pay-button" class="btn btn-primary">Metode Bayar</button>
                             </div>
-
                         </div>
                     </form>
 
@@ -188,6 +180,35 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('customer/js/main.js') }}"></script>
+
+    <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function() {
+            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+            window.snap.pay('{{ $order->snap_token }}', {
+                onSuccess: function(result) {
+                    /* You may add your own implementation here */
+                    alert("payment success!");
+                    console.log(result);
+                },
+                onPending: function(result) {
+                    /* You may add your own implementation here */
+                    alert("wating your payment!");
+                    console.log(result);
+                },
+                onError: function(result) {
+                    /* You may add your own implementation here */
+                    alert("payment failed!");
+                    console.log(result);
+                },
+                onClose: function() {
+                    /* You may add your own implementation here */
+                    alert('you closed the popup without finishing the payment');
+                }
+            })
+        });
+    </script>
 
 </body>
 
