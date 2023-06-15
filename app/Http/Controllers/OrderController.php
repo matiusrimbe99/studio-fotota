@@ -305,6 +305,7 @@ class OrderController extends Controller
                     'first_name' => $dataOrder->user->customer->name,
                     'email' => $dataOrder->user->email,
                     'phone' => $dataOrder->user->customer->nomor_hp,
+                    'address' => $dataOrder->user->customer->address,
                 ),
             );
             $snapToken = \Midtrans\Snap::getSnapToken($params);
