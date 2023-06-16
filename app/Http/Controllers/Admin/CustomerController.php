@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Customer;
-use App\Models\OrderMethod;
-use App\Models\Packet;
-use App\Models\Studio;
 use App\Models\User;
 use DataTables;
 use Illuminate\Http\Request;
@@ -54,20 +51,15 @@ class CustomerController extends Controller
 
         $titleApp = 'Ganti Password';
         $brand = Brand::where('id', 1)->get()->first();
-        $orderMethod = OrderMethod::where('id', 1)->get()->first();
-        $user = auth()->user();
-        $packets = Packet::all();
-        $studios = Studio::all();
-
         $user = Auth::user();
 
-        $user = User::where('id', $user->id)->where('role_id', 2)->get()->first();
+        $userData = User::where('id', $user->id)->where('role_id', 2)->get()->first();
 
-        if (!$user) {
+        if (!$userData) {
             return abort(404);
         }
 
-        return view('change-password', compact('titleApp', 'brand', 'orderMethod', 'user', 'packets', 'studios'));
+        return view('change-password', compact('titleApp', 'brand', 'userData'));
 
     }
 
@@ -87,5 +79,55 @@ class CustomerController extends Controller
         ]);
 
         return back()->with("success", "Password berhasil diganti!");
+    }
+
+    public function viewChangeProfil()
+    {
+        $titleApp = 'Edit Profil';
+        $brand = Brand::where('id', 1)->get()->first();
+
+        $user = Auth::user();
+
+        $userData = User::where('id', $user->id)->where('role_id', 2)->get()->first();
+
+        if (!$userData) {
+            return abort(404);
+        }
+        return view('edit-profil', compact('titleApp', 'brand', 'userData'));
+
+    }
+    public function changeProfil(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'gender' => 'required',
+            'nomor_hp' => 'required|numeric',
+        ]);
+
+        $nomor_hp = $request['nomor_hp'];
+        if ($request['nomor_hp'][0] == "0") {
+            $nomor_hp = substr($nomor_hp, 1);
+        }
+        if ($nomor_hp[0] == "8") {
+            $nomor_hp = "62" . $nomor_hp;
+        }
+
+        $userId = Auth::id();
+        $user = User::where('id', $userId)->where('role_id', 2);
+
+        if (!$user->get()->first()) {
+            return abort(404);
+        }
+
+        $user->get()->first()->customer->update([
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'nomor_hp' => $nomor_hp,
+        ]);
+
+        return back()->with("success", "Profil berhasil diperbarui!");
+
     }
 }

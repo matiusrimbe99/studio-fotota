@@ -112,15 +112,15 @@
         <div class="container" data-aos="fade-up">
 
             <header class="section-header">
-                <h2>Ganti Password</h2>
-                <p>Silahkan Mengisi Form Dibawah Ini</p>
+                <h2>Edit Profil</h2>
+                <p>Silahkan Mengubah Form Dibawah Ini</p>
             </header>
 
             <div class="row gy-4">
 
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
-                    <form action="{{ url('customers/change-password') }}" method="POST" class="php-email-form">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <form action="{{ url('customers/profil') }}" method="POST" class="php-email-form">
                         @csrf
                         @method('PATCH')
                         <div class="row gy-4">
@@ -133,34 +133,59 @@
                                     {{ session('error') }}
                                 </div>
                             @endif
-                            <div class="col-md-12">
-                                <label for="old_password">Password Lama</label>
-                                <input id="old_password" name="old_password" type="password"
-                                    class="form-control @error('old_password') is-invalid @enderror"
-                                    placeholder="Masukkan password lama">
+                            <div class="col-md-6">
+                                <label for="name">Nama Lengkap</label>
+                                <input id="name" name="name" type="text"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    placeholder="Masukkan nama Anda" value="{{ $userData->customer->name }}">
 
-                                @error('old_password')
+                                @error('name')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
-                                <label for="new_password">Password Baru</label>
-                                <input id="new_password" name="new_password" type="password"
-                                    class="form-control @error('new_password') is-invalid @enderror"
-                                    placeholder="Masukkan password baru">
 
-                                @error('new_password')
+                            <div class="col-md-6">
+                                <label for="address">Alamat</label>
+                                <input id="address" name="address" type="text"
+                                    class="form-control @error('address') is-invalid @enderror"
+                                    placeholder="Masukkan alamat" value="{{ $userData->customer->address }}">
+
+                                @error('address')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-12">
-                                <label for="new_password_confirmation">Konfirmasi Password Baru</label>
-                                <input id="new_password_confirmation" name="new_password_confirmation"
-                                    type="password"
-                                    class="form-control @error('new_password_confirmation') is-invalid @enderror"
-                                    placeholder="Masukkan konfirmasi password baru">
 
-                                @error('new_password_confirmation')
+                            <div class="col-md-6">
+                                <label for="username">Username</label>
+                                <input id="username" class="form-control" value="{{ $userData->username }}"
+                                    readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email">Email</label>
+                                <input id="email" class="form-control" value="{{ $userData->email }}" readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="gender">Jenis Kelamin</label>
+                                <select id="gender" name="gender"
+                                    class="form-control @error('gender') is-invalid @enderror">
+                                    <option value="">--- Pilih Jenis Kelamin ---</option>
+                                    <option value="1">Laki-Laki</option>
+                                    <option value="2">Perempuan</option>
+
+                                </select>
+                                @error('gender')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="nomor_hp">Nomor HP</label>
+                                <input id="nomor_hp" name="nomor_hp" type="text"
+                                    class="form-control @error('nomor_hp') is-invalid @enderror"
+                                    placeholder="Masukkan nomor HP" value="{{ $userData->customer->nomor_hp }}">
+
+                                @error('nomor_hp')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -168,16 +193,14 @@
 
 
                             <div class="col-md-12 text-center">
-
-
-                                <button type="submit">Ganti Password</button>
+                                <button class="mt-5" type="submit">Ubah Profil</button>
                             </div>
 
                         </div>
                     </form>
 
                 </div>
-                <div class="col-lg-3"></div>
+                <div class="col-lg-1"></div>
 
             </div>
 
