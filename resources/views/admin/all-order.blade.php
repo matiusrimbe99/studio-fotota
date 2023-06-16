@@ -18,7 +18,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            @if ($dataOrder->isEmpty())
+                            @if (!$dataOrder->isEmpty())
                                 <div class="row mb-3">
                                     <div class="col-12">
                                         <a href="{{ url('admin/orders/cetak') }}" class="btn btn-success float-right"><i
