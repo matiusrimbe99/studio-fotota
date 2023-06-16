@@ -122,19 +122,17 @@
             <div class="row gy-4">
                 <div class="col-lg-6">
                     <p>{{ $contact->method_order }}</p>
-                    <h4 class="text-warning">Rekening {{ $contact->bank_name }}</h4>
-                    <h4 class="text-danger">{{ $contact->account_number }} a/n
-                        {{ $contact->name_on_account }}</h4>
                 </div>
                 <div class="col-lg-6">
                     <form class="php-email-form">
                         <div class="row gy-4">
                             <div class="col-md-12">
-                                <p>Klik tombol dibawah ini untuk memilih metode pembayaran</p>
+                                <p>Klik tombol dibawah ini untuk bayar sekarang dan memilih metode pembayaran</p>
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <button type="button" id="pay-button" class="btn btn-primary">Metode Bayar</button>
+                                <button type="button" id="pay-button" class="btn btn-primary btn-lg">Bayar
+                                    Sekarang</button>
                             </div>
                         </div>
                     </form>

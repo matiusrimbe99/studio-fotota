@@ -70,33 +70,6 @@ class OrderController extends Controller
         return view('admin/all-order', compact('titleApp'));
     }
 
-    public function listOrderPayments(Request $request)
-    {
-        $titleApp = 'Pembayaran';
-
-        if ($request->ajax()) {
-            $orders = Order::where('status_order_id', 4)->get();
-
-            return Datatables::of($orders)->addIndexColumn()
-                ->addColumn('number', function ($row) {
-                    static $number = 1;
-                    return $number++;
-                })->addColumn('name', function ($row) {
-                return $row->user->customer->name;
-            })->addColumn('packet_name', function ($row) {
-                return $row->packet->packet_name;
-            })->addColumn('studio_name', function ($row) {
-                return $row->studio->studio_name;
-            })->addColumn('action', function ($row) {
-                $btn = '<a class="btn btn-sm btn-info" href="' . $row->id . "/payment" . '"><i class="fas fa-edit"></i> View</a>';
-                return $btn;
-            })->rawColumns(['number', 'name', 'packet_name', 'studio_name', 'action'])->make(true);
-        }
-
-        return view('admin/payment-order', compact('titleApp'));
-
-    }
-
     public function listOrderFullPayments(Request $request)
     {
         $titleApp = 'Pesanan Lunas';
@@ -170,19 +143,6 @@ class OrderController extends Controller
         }
 
         return view('admin/detail-order', compact('order', 'titleApp'));
-    }
-
-    public function showPayment($id)
-    {
-        $titleApp = 'Pembayaran';
-        $order = Order::where('id', $id)->where('status_order_id', 4)->get()->first();
-
-        if (!$order) {
-            return abort(404);
-        }
-
-        return view('admin/detail-payment-order', compact('order', 'titleApp'));
-
     }
 
     public function showFullPayment($id)
@@ -343,26 +303,6 @@ class OrderController extends Controller
         }
     }
 
-    public function updatePayment(Request $request, $id)
-    {
-        $request->validate([
-            'status_order_id' => 'required',
-        ]);
-
-        $order = Order::where('id', $id)->where('status_order_id', 4);
-
-        if (!$order) {
-            return abort(404);
-        }
-
-        $order->update([
-            'status_order_id' => $request->status_order_id,
-        ]);
-
-        return redirect('admin/orders/payments');
-
-    }
-
     public function updateOrderDone($id)
     {
 
@@ -438,38 +378,5 @@ class OrderController extends Controller
         }
 
         return view('payment-order', compact('titleApp', 'brand', 'contact', 'order'));
-    }
-
-    public function updateCustomerPayment(Request $request, $id)
-    {
-
-        $request->validate([
-            'payment_proof' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-        ]);
-
-        $user = auth()->user();
-
-        $order = Order::where('id', $id)->where('user_id', $user->id)->where('status_order_id', 3)->get()->first();
-
-        if (!$order) {
-            return abort(404);
-        }
-
-        if ($request->hasFile('payment_proof')) {
-            $payment_proof = $request->file('payment_proof');
-
-            $customerFirstName = explode(' ', $user->customer->name)[0];
-            $uploadDate = now()->format('YmdHis');
-            $fileName = "{$customerFirstName}-{$uploadDate}-{$id}";
-
-            $payment_proof->storeAs('payment_proofs', $fileName);
-
-            $order->update([
-                'payment_proof' => $fileName,
-                'status_order_id' => 4,
-                'paid_at' => now()->format('Y-m-d H:i:s'),
-            ]);
-        }
-        return redirect('orders/customers');
     }
 }

@@ -105,19 +105,15 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
 
     Route::get('admin/orders', [OrderController::class, 'index']);
     Route::get('admin/orders/cetak', [OrderController::class, 'cetakLaporan']);
-    Route::get('admin/orders/payments', [OrderController::class, 'listOrderPayments']);
     Route::get('admin/orders/full-payments', [OrderController::class, 'listOrderFullPayments']);
     Route::get('admin/orders/completed', [OrderController::class, 'listOrderCompleted']);
     Route::get('admin/orders/all', [OrderController::class, 'listAllOrder']);
     Route::get('admin/orders/{order}/all', [OrderController::class, 'showAllOrder']);
     Route::get('admin/orders/{order}', [OrderController::class, 'show']);
-    Route::get('admin/orders/{order}/payment', [OrderController::class, 'showPayment']);
     Route::get('admin/orders/{order}/full-payment', [OrderController::class, 'showFullPayment']);
     Route::get('admin/orders/{order}/completed', [OrderController::class, 'showOrderCompleted']);
     Route::patch('admin/orders/{order}/done', [OrderController::class, 'updateOrderDone']);
-    Route::patch('admin/orders/{order}/payment', [OrderController::class, 'updatePayment']);
     Route::patch('admin/orders/{order}', [OrderController::class, 'updateAcceptOrReject']);
-
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {
@@ -126,6 +122,4 @@ Route::middleware(['auth', 'checkrole:2'])->group(function () {
     Route::get('orders/customers', [OrderController::class, 'showOrderByCustomer']);
     Route::get('orders/customers/{order}/payment', [OrderController::class, 'formCustomerPayment']);
     Route::get('orders/customers/{order}/e-tiket', [OrderController::class, 'generatePDFTiket']);
-    Route::patch('orders/customers/{order}/payment', [OrderController::class, 'updateCustomerPayment']);
-    // Route::post('/midtrans-callback', [OrderController::class, 'callback']);
 });

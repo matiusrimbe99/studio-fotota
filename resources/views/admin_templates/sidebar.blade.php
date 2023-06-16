@@ -80,17 +80,10 @@
                      </a>
                  </li>
                  <li class="nav-item">
-                     <a href="{{ url('admin/orders/payments') }}"
-                         class="nav-link {{ $currentUrl == url('admin/orders/payments') ? 'active' : '' }}">
-                         <i class="nav-icon fa fa-credit-card"></i>
-                         <p>Pembayaran</p>
-                     </a>
-                 </li>
-                 <li class="nav-item">
                      <a href="{{ url('admin/orders/full-payments') }}"
                          class="nav-link {{ $currentUrl == url('admin/orders/full-payments') ? 'active' : '' }}">
                          <i class="nav-icon fa fa-check"></i>
-                         <p>Pesanan Lunas</p>
+                         <p>Pembayaran</p>
                      </a>
                  </li>
                  <li class="nav-item">
