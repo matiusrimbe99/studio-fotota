@@ -67,7 +67,9 @@ class OrderController extends Controller
             })->rawColumns(['number', 'name', 'created_at', 'status_name', 'total_price', 'action'])->make(true);
         }
 
-        return view('admin/all-order', compact('titleApp'));
+        $dataOrder = Order::where('status_order_id', 7)->get();
+
+        return view('admin/all-order', compact('titleApp', 'dataOrder'));
     }
 
     public function listOrderFullPayments(Request $request)
