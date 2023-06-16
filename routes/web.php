@@ -119,6 +119,9 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
 Route::middleware(['auth', 'checkrole:2'])->group(function () {
     Route::get('orders/create', [OrderController::class, 'create']);
     Route::post('orders', [OrderController::class, 'store']);
+    Route::get('customers/change-password', [CustomerController::class, 'viewChangePassword']);
+    Route::patch('customers/change-password', [CustomerController::class, 'changePassword']);
+    Route::get('customers/profil', [CustomerController::class, 'viewChangeProfil']);
     Route::get('orders/customers', [OrderController::class, 'showOrderByCustomer']);
     Route::get('orders/customers/{order}/payment', [OrderController::class, 'formCustomerPayment']);
     Route::get('orders/customers/{order}/e-tiket', [OrderController::class, 'generatePDFTiket']);

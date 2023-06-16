@@ -3,9 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Customer;
+use App\Models\OrderMethod;
+use App\Models\Packet;
+use App\Models\Studio;
+use App\Models\User;
 use DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
@@ -40,5 +47,45 @@ class CustomerController extends Controller
 
         return view('admin/detail-customer', compact('customer', 'titleApp'));
 
+    }
+
+    public function viewChangePassword()
+    {
+
+        $titleApp = 'Ganti Password';
+        $brand = Brand::where('id', 1)->get()->first();
+        $orderMethod = OrderMethod::where('id', 1)->get()->first();
+        $user = auth()->user();
+        $packets = Packet::all();
+        $studios = Studio::all();
+
+        $user = Auth::user();
+
+        $user = User::where('id', $user->id)->where('role_id', 2)->get()->first();
+
+        if (!$user) {
+            return abort(404);
+        }
+
+        return view('change-password', compact('titleApp', 'brand', 'orderMethod', 'user', 'packets', 'studios'));
+
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", "Password lama tidak cocok!");
+        }
+
+        User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return back()->with("success", "Password berhasil diganti!");
     }
 }

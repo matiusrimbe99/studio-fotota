@@ -117,88 +117,67 @@
             </header>
 
             <div class="row gy-4">
+
+                <div class="col-lg-3"></div>
                 <div class="col-lg-6">
-                    <h4 style="font-weight:bold">Langkah Pemesanan</h4>
-                    <ol style="margin-top:30px">
-                        <li style="margin-top:30px"> {{ $orderMethod->first }}</li>
-                        <li style="margin-top:30px"> {{ $orderMethod->second }}</li>
-                        <li style="margin-top:30px"> {{ $orderMethod->third }}</li>
-                        <li style="margin-top:30px"> {{ $orderMethod->fourth }}</li>
-                    </ol>
-                </div>
-                <div class="col-lg-6">
-                    <form action="{{ url('orders') }}" method="POST" class="php-email-form">
+                    <form action="{{ url('customers/change-password') }}" method="POST" class="php-email-form">
                         @csrf
+                        @method('PATCH')
                         <div class="row gy-4">
-
-                            <div class="col-md-6">
-                                <label for="name">Nama</label>
-                                <input id="name" class="form-control " value="{{ $user->customer->name }}"
-                                    readonly>
-                                <input type="hidden" name="id" class="form-control" value="{{ $user->id }}"
-                                    readonly>
-                            </div>
-
-                            <div class="col-md-6 ">
-                                <label for="address">Alamat</label>
-                                <input id="address" class="form-control" value="{{ $user->customer->address }}"
-                                    readonly>
-                            </div>
-
+                            @if (session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @elseif (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <div class="col-md-12">
-                                <label for="packet_id">Paket Foto</label>
-                                <select id="packet_id" name="packet_id"
-                                    class="form-control @error('packet_id') is-invalid @enderror">
-                                    <option value="">--- Pilih Paket ---</option>
-                                    @foreach ($packets as $packet)
-                                        <option value="{{ $packet->id }}">
-                                            {{ $packet->packet_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('packet_id')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <label for="old_password">Password Lama</label>
+                                <input id="old_password" name="old_password" type="password"
+                                    class="form-control @error('old_password') is-invalid @enderror"
+                                    placeholder="Masukkan password lama">
 
-                            </div>
-
-                            <div class="col-md-12">
-                                <label for="studio_id">Studio Foto</label>
-                                <select id="studio_id" name="studio_id"
-                                    class="form-control @error('studio_id') is-invalid @enderror">
-                                    <option value="">--- Pilih Studio ---</option>
-                                    @foreach ($studios as $studio)
-                                        <option value="{{ $studio->id }}">
-                                            {{ $studio->studio_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('studio_id')
+                                @error('old_password')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-md-12">
-                                <label for="shooting_date">Tanggal Pemotretan</label>
-                                <input id="shooting_date" type="date"
-                                    class="form-control @error('shooting_date') is-invalid @enderror"
-                                    name="shooting_date">
-                                @error('shooting_date')
+                                <label for="new_password">Password Baru</label>
+                                <input id="new_password" name="new_password" type="password"
+                                    class="form-control @error('new_password') is-invalid @enderror"
+                                    placeholder="Masukkan password baru">
+
+                                @error('new_password')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="col-md-12">
+                                <label for="new_password_confirmation">Konfirmasi Password Baru</label>
+                                <input id="new_password_confirmation" name="new_password_confirmation"
+                                    type="password"
+                                    class="form-control @error('new_password_confirmation') is-invalid @enderror"
+                                    placeholder="Masukkan konfirmasi password baru">
+
+                                @error('new_password_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+
 
                             <div class="col-md-12 text-center">
-                                {{-- <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div> --}}
 
-                                <button type="submit">Lanjutkan</button>
+
+                                <button type="submit">Ganti Password</button>
                             </div>
 
                         </div>
                     </form>
 
                 </div>
+                <div class="col-lg-3"></div>
 
             </div>
 
