@@ -8,6 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
+                <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="card card-primary">
@@ -52,24 +53,9 @@
                     </div>
                     <!-- /.card -->
                 </div>
+                <div class="col-md-3"></div>
                 <!--/.col (left) -->
-                <!-- right column -->
-                <div class="col-md-6">
-                    <!-- Form Element sizes -->
-                    <div class="card card-success">
-                        <div class="card-header">
-                            <h3 class="card-title">Gambar Bukti Pembayaran</h3>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ $order->payment_proof }}"><img class="img-fluid pad"
-                                    src="{{ $order->payment_proof }}" alt="payment-proof"></a>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
 
-                </div>
-                <!--/.col (right) -->
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->

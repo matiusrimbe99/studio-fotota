@@ -11,8 +11,8 @@ use App\Models\Packet;
 use App\Models\Studio;
 use Carbon\Traits\Date;
 use DataTables;
-use Elibyy\TCPDF\Facades\TCPDF;
 use Illuminate\Http\Request;
+use TCPDF;
 
 class OrderController extends Controller
 {
@@ -183,14 +183,16 @@ class OrderController extends Controller
 
         $brandName = Brand::where('id', 1)->get()->first()->brand_name;
         $printDate = now()->format('Y-m-d H:i:s');
-        $invoiceDate = now()->format('dmY');
+        $paidAt = strtotime($order->paid_at);
+        $invoiceDate = date('d M Y', $paidAt);
+        $totalPrice = $order->packet->price + $order->studio->price;
         $data = [
             'titleApp' => 'E-Tiket',
             'brandName' => $brandName,
             'printDate' => $printDate,
             'invoiceDate' => $invoiceDate,
+            'totalPrice' => $totalPrice,
         ];
-
         return view('e-tiket', compact('data', 'user', 'order', 'admin'));
     }
 
@@ -200,42 +202,42 @@ class OrderController extends Controller
         $orders = Order::where('status_order_id', 7)->get();
 
         $pdf = new TCPDF();
-        $pdf::SetTitle('Laporan Pesanan');
-        $pdf::AddPage();
-        $pdf::WriteHTML('<h1 style="text-align:center;">Laporan Pesanan</h1>');
-        $pdf::Ln(8);
+        $pdf->SetTitle('Laporan Pesanan');
+        $pdf->AddPage();
+        $pdf->WriteHTML('<h1 style="text-align:center;">Laporan Pesanan</h1>');
+        $pdf->Ln(8);
 
-        $pdf::SetFillColor(255, 0, 0);
-        $pdf::SetTextColor(255);
-        $pdf::SetDrawColor(128, 0, 0);
-        $pdf::SetLineWidth(0.3);
-        $pdf::SetFont('', 'B');
+        $pdf->SetFillColor(255, 0, 0);
+        $pdf->SetTextColor(255);
+        $pdf->SetDrawColor(128, 0, 0);
+        $pdf->SetLineWidth(0.3);
+        $pdf->SetFont('', 'B');
 
         $w = array(10, 45, 45, 45, 45);
         $num_headers = count($header);
         for ($i = 0; $i < $num_headers; ++$i) {
-            $pdf::Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+            $pdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
         }
-        $pdf::Ln();
+        $pdf->Ln();
 
-        $pdf::SetFillColor(224, 235, 255);
-        $pdf::SetTextColor(0);
-        $pdf::SetFont('');
+        $pdf->SetFillColor(224, 235, 255);
+        $pdf->SetTextColor(0);
+        $pdf->SetFont('');
 
         $fill = 0;
         foreach ($orders as $row) {
-            $pdf::Cell($w[0], 6, $row->id, 'LR', 0, 'L', $fill);
-            $pdf::Cell($w[1], 6, $row->user->customer->name, 'LR', 0, 'L', $fill);
-            $pdf::Cell($w[2], 6, $row->completed_at, 'LR', 0, 'R', $fill);
-            $pdf::Cell($w[3], 6, 'Rp. ' . number_format($row->packet->price + $row->studio->price, 2, ',', '.'), 'LR', 0, 'R', $fill);
-            $pdf::Cell($w[4], 6, $row->statusOrder->status_name, 'LR', 0, 'R', $fill);
-            $pdf::Ln();
+            $pdf->Cell($w[0], 6, $row->id, 'LR', 0, 'L', $fill);
+            $pdf->Cell($w[1], 6, $row->user->customer->name, 'LR', 0, 'L', $fill);
+            $pdf->Cell($w[2], 6, $row->completed_at, 'LR', 0, 'R', $fill);
+            $pdf->Cell($w[3], 6, 'Rp. ' . number_format($row->packet->price + $row->studio->price, 2, ',', '.'), 'LR', 0, 'R', $fill);
+            $pdf->Cell($w[4], 6, $row->statusOrder->status_name, 'LR', 0, 'R', $fill);
+            $pdf->Ln();
             $fill = !$fill;
         }
-        $pdf::Cell(array_sum($w), 0, '', 'T');
+        $pdf->Cell(array_sum($w), 0, '', 'T');
 
-        $filename = 'Laporan Pesanan';
-        return $pdf::Output($filename, 'I');
+        $filename = 'laporan_pesanan.pdf';
+        return $pdf->Output($filename, 'D');
     }
 
     public function updateAcceptOrReject(Request $request, $id)
